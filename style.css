@@ -149,6 +149,122 @@
   color: #0a4d8c;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.form-error {
+  margin: 24px 0 0;
+  color: #a3341f;
+}
+
+.form-note {
+  margin: 0 0 32px;
+  color: #5a6472;
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 20px;
+}
+
+.phone-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: #5a6472;
+}
+
+.phone-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+  padding: 24px;
+  text-align: center;
+}
+
+.phone-cover button {
+  padding: 12px 18px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.phone-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.phone-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #8a93a0;
+}
+
+.phone-idle p {
+  margin: 0;
+}
+
+.phone-idle .phone-clock {
+  margin-bottom: 6px;
+  font-size: 56px;
+  font-weight: 200;
+  color: #3a4250;
+}
+
+.phone-sms {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sms-header {
+  padding: 14px 18px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #dfe3ea;
+}
+
+.sms-thread {
+  flex: 1;
+  padding: 16px;
+  background-color: #f4f5f7;
+}
+
+.sms-bubble {
+  padding: 14px 16px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+.sms-bubble p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sms-bubble #sms-code {
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.sms-time {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: #8a93a0;
+}
+
 /* The two devices side by side */
 .stage {
   display: flex;
@@ -157,6 +273,17 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 40px 24px;
+}
+
+.device {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.device-label {
+  margin: 0;
+  font-weight: bold;
 }
 
 .device-frame--laptop {

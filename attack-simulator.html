@@ -27,48 +27,103 @@
     </header>
 
     <div class="mfa-picker">
-      <button type="button" data-mfa="text">Code by text</button>
+      <button type="button" class="active" data-mfa="text">Code by text</button>
       <button type="button" data-mfa="app">Code in an app</button>
       <button type="button" data-mfa="popup">Code by popup</button>
     </div>
 
     <div class="stage">
-      <div class="device-frame--laptop">
-        <div class="laptop">
-          <div class="content">
-            <div class="browser">
-              <div class="browser-bar">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <div class="url-bar">jubank.example/login</div>
-              </div>
+      <div class="device">
+        <p class="device-label">Attacker's machine</p>
+        <div class="device-frame--laptop">
+          <div class="laptop">
+            <div class="content">
+              <div class="browser">
+                <div class="browser-bar">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <div class="url-bar">jubank.example/login</div>
+                </div>
 
-              <div class="browser-page">
-                <div class="bank-header">JU Bank</div>
+                <div class="browser-page">
+                  <div class="bank-header">JU Bank</div>
 
-                <form class="login-card" id="login-form">
-                  <h1>Sign in to online banking</h1>
+                  <form class="login-card" id="login-form">
+                    <h1>Sign in to online banking</h1>
 
-                  <label for="email">Email</label>
-                  <input type="email" id="email" value="" autocomplete="off">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="" autocomplete="off">
 
-                  <label for="password">Password</label>
-                  <input type="password" id="password" value="" autocomplete="off">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" value="" autocomplete="off">
 
-                  <button type="submit">Sign in</button>
-                  <p class="fine-print">Forgot your password?</p>
-                </form>
+                    <button type="submit">Sign in</button>
+                    <p class="fine-print">Forgot your password?</p>
+                    <p class="form-error" id="login-error" hidden></p>
+                  </form>
+
+                  <form class="login-card" id="code-form" hidden>
+                    <h1>Enter your code</h1>
+                    <p class="form-note">We texted a 6-digit code to the phone ending 4471.</p>
+
+                    <label for="code">Verification code</label>
+                    <input type="text" id="code" inputmode="numeric" maxlength="6" autocomplete="off">
+
+                    <button type="submit">Verify</button>
+                    <p class="form-error" id="code-error" hidden>That code is not right.</p>
+                  </form>
+
+                  <div class="login-card" id="done-card" hidden>
+                    <h1>Account access granted</h1>
+                    <p class="form-note">You are inside Joren's bank account.</p>
+                    <button type="button" id="restart">Start over</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="device-frame--phone">
-        <div class="smartphone">
-          <div class="content">
-            <p>Victim</p>
+      <div class="device">
+        <p class="device-label">Joren's phone</p>
+        <div class="device-frame--phone">
+          <div class="smartphone">
+            <div class="content">
+              <div class="phone">
+                <div class="phone-cover" id="phone-cover">
+                  <p>Joren has this phone. You do not.</p>
+                  <button type="button" id="reveal-phone">Look at his phone</button>
+                </div>
+
+                <div class="phone-screen" id="phone-screen" hidden>
+                  <div class="phone-status">
+                    <span>9:41</span>
+                    <span>4G</span>
+                  </div>
+
+                  <div class="phone-idle" id="phone-idle">
+                    <p class="phone-clock">9:41</p>
+                    <p>No new messages</p>
+                  </div>
+
+                  <div class="phone-sms" id="phone-sms" hidden>
+                    <div class="sms-header">JU Bank</div>
+
+                    <div class="sms-thread">
+                      <div class="sms-bubble">
+                        <p>
+                          Your JU Bank verification code is
+                          <span id="sms-code"></span>. Never share this code with anyone.
+                        </p>
+                        <span class="sms-time">now</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
