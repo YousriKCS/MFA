@@ -1,0 +1,140 @@
+/* Website colours */
+
+:root {
+    --background-color: #f5f7fa;
+    --card-color: #ffffff;
+    --main-text-color: #17233c;
+    --secondary-text-color: #555555;
+    --button-color: #2474d2;
+    --button-hover-color: #185ba8;
+    --button-text-color: #ffffff;
+    --border-color: #dddddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--main-text-color);
+    text-align: center;
+}
+header {
+    padding: 20px;
+    background-color: var(--card-color);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 24px;
+    font-weight: bold;
+}
+main {
+    padding: 70px 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 42px;
+}
+.subtitle {
+    margin-bottom: 50px;
+    color: var(--secondary-text-color);
+    font-size: 20px;
+}
+
+.simulators {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+}
+
+.card {
+    width: 330px;
+    padding: 35px;
+    background-color: var(--card-color);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    min-height: 60px;
+}
+
+.card p {
+    min-height: 55px;
+}
+
+.button {
+    display: block;
+    margin-top: 25px;
+    padding: 15px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.button:hover {
+    background-color: var(--button-hover-color);
+}
+.info-page {
+    display: flex;
+    justify-content: center;
+    padding: 70px 20px;
+}
+
+.info-box {
+    width: 600px;
+    padding: 45px;
+    background-color: var(--card-color);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    text-align: center;
+}
+
+.info-icon {
+    font-size: 60px;
+}
+
+.info-box h1 {
+    color: var(--main-text-color);
+    margin-bottom: 25px;
+}
+
+.info-box p {
+    color: var(--secondary-text-color);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.notice {
+    margin: 30px 0;
+    padding: 18px;
+    background-color: #eaf3ff;
+    border-left: 5px solid var(--button-color);
+    border-radius: 6px;
+    text-align: left;
+}
+
+.info-box .button {
+    margin-top: 25px;
+}
+
+.back-link {
+    display: block;
+    margin-top: 25px;
+    color: var(--button-color);
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
