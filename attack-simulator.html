@@ -64,15 +64,31 @@
                   </form>
 
                   <form class="login-card" id="code-form" hidden>
-                    <h1>Enter your code</h1>
-                    <p class="form-note">We texted a 6-digit code to the phone ending 4471.</p>
+                    <h1>One more check</h1>
+                    <p class="form-note" id="code-note"></p>
 
                     <label for="code">Verification code</label>
                     <input type="text" id="code" inputmode="numeric" maxlength="6" autocomplete="off">
 
-                    <button type="submit">Verify</button>
-                    <p class="form-error" id="code-error" hidden>That code is not right.</p>
+                    <button type="submit">Continue</button>
+                    <p class="form-error" id="code-error" hidden></p>
                   </form>
+
+                  <div class="login-card" id="wait-card" hidden>
+                    <h1>One more check</h1>
+                    <p class="form-note">
+                      We sent a request to his phone. It will ask him to tap this number.
+                    </p>
+
+                    <p class="wait-status">Waiting for him to tap "Yes"...</p>
+
+                    <div class="match-number">
+                      <p class="match-label">Number to match</p>
+                      <p class="match-value" id="match-number"></p>
+                    </div>
+
+                    <p class="wait-note">You can only wait. It is all up to Joren now.</p>
+                  </div>
 
                   <div class="login-card" id="result-card" hidden>
                     <h1 id="result-title"></h1>
@@ -131,7 +147,57 @@
                         </p>
                         <span class="sms-time">now</span>
                       </div>
+
+                      <p class="phone-footnote">
+                        This number was sent to Joren's phone. The hacker's screen never sees it.
+                      </p>
                     </div>
+                  </div>
+
+                  <div class="phone-app" id="phone-app" hidden>
+                    <div class="app-card">
+                      <p class="app-name">Safety app &middot; JU Bank</p>
+                      <p class="app-code" id="app-code"></p>
+
+                      <div class="app-countdown">
+                        <span id="app-bar"></span>
+                      </div>
+
+                      <p class="app-note">
+                        Changes again in <span id="app-seconds"></span> seconds
+                      </p>
+                    </div>
+
+                    <p class="phone-footnote">
+                      This number is made on his phone and keeps changing. There is no text for a
+                      hacker to grab.
+                    </p>
+                  </div>
+
+                  <div class="phone-push" id="phone-push" hidden>
+                    <div class="push-card">
+                      <p class="push-from">JU Bank <span>now</span></p>
+                      <p class="push-title">Are you trying to sign in?</p>
+                      <p class="push-sub">Only tap "Yes" if you started this yourself.</p>
+
+                      <p class="push-number" id="push-number"></p>
+
+                      <ul class="push-facts">
+                        <li>Kyiv, Ukraine</li>
+                        <li>A Windows computer</li>
+                        <li class="push-warn">Not your usual device</li>
+                      </ul>
+
+                      <div class="push-actions">
+                        <button type="button" id="push-deny">No, that's not me</button>
+                        <button type="button" id="push-allow">Yes, allow it</button>
+                      </div>
+                    </div>
+
+                    <p class="phone-footnote">
+                      You are Joren now. He is at home and did not try to log in. What should he
+                      tap?
+                    </p>
                   </div>
                 </div>
               </div>

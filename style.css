@@ -93,15 +93,15 @@
 .login-card {
   box-sizing: border-box;
   width: 640px;
-  margin: 72px auto;
-  padding: 56px;
+  margin: 32px auto;
+  padding: 40px;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
 }
 
 .login-card h1 {
-  margin: 0 0 40px;
+  margin: 0 0 28px;
   font-size: 40px;
 }
 
@@ -115,7 +115,7 @@
 .login-card input {
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding: 16px 20px;
   font: inherit;
   border: 2px solid #cfd5df;
@@ -143,7 +143,7 @@
 }
 
 .login-card .fine-print {
-  margin: 28px 0 0;
+  margin: 20px 0 0;
   font-size: 22px;
   text-align: center;
   color: #0a4d8c;
@@ -161,6 +161,31 @@
 .form-note {
   margin: 0 0 32px;
   color: #5a6472;
+}
+
+.wait-status {
+  margin: 0 0 28px;
+  color: #5a6472;
+}
+
+.match-number {
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #cfd5df;
+}
+
+.match-label {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #5a6472;
+}
+
+.match-value {
+  margin: 8px 0 0;
+  font-size: 56px;
+  font-weight: bold;
 }
 
 .phone {
@@ -263,6 +288,130 @@
   margin-top: 8px;
   font-size: 15px;
   color: #8a93a0;
+}
+
+.phone-footnote {
+  margin: 20px 0 0;
+  padding: 0 4px;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+  color: #8a93a0;
+}
+
+.phone-app,
+.phone-push {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px;
+  background-color: #f4f5f7;
+}
+
+.app-card {
+  padding: 16px;
+  background-color: white;
+  border-radius: 14px;
+}
+
+.app-name {
+  margin: 0;
+  font-size: 15px;
+  color: #5a6472;
+}
+
+.app-code {
+  margin: 8px 0 0;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: .06em;
+}
+
+.app-countdown {
+  height: 6px;
+  margin-top: 12px;
+  background-color: #dfe3ea;
+}
+
+.app-countdown span {
+  display: block;
+  height: 100%;
+  background-color: #0a4d8c;
+}
+
+.app-note {
+  margin: 10px 0 0;
+  font-size: 15px;
+  color: #5a6472;
+}
+
+.push-card {
+  padding: 16px;
+  background-color: white;
+  border-radius: 14px;
+}
+
+.push-from {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.push-from span {
+  font-weight: normal;
+  color: #8a93a0;
+}
+
+.push-title {
+  margin: 10px 0 0;
+  font-weight: bold;
+}
+
+.push-sub {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: #5a6472;
+}
+
+.push-number {
+  margin: 12px 0;
+  font-size: 44px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.push-facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+}
+
+.push-facts li {
+  margin-bottom: 5px;
+  padding: 5px 8px;
+  background-color: #f2f4f8;
+}
+
+.push-facts .push-warn {
+  color: #a3341f;
+  background-color: #fdecea;
+}
+
+.push-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.push-actions button {
+  flex: 1;
+  padding: 12px 6px;
+  font: inherit;
+  font-size: 17px;
+  cursor: pointer;
 }
 
 /* The two devices side by side */
