@@ -1,10 +1,10 @@
-const CREDS = { email: 'joren@example.com', password: 'Summer2023' };
+const CREDS = { email: 'john@example.com', password: 'Summer2023' };
 const MAX_TRIES = 3;
 const TOTP_SECONDS = 30;
 
 const SIGNED_IN = {
   resultTitle: 'Signed in',
-  resultText: 'Welcome back, Joren. Opening your accounts...',
+  resultText: 'Welcome back, John. Opening your accounts...',
 };
 
 const BLOCKED = {
@@ -17,7 +17,7 @@ const OUTCOMES = {
     peeked: {
       ...SIGNED_IN,
       title: 'You got in.',
-      text: 'You only managed that by opening Joren\'s phone and reading the number off it. That phone is in his pocket, in another city. Nothing you stole gives you a way to see it.',
+      text: 'You only managed that by opening John\'s phone and reading the number off it. That phone is in his pocket, in another city. Nothing you stole gives you a way to see it.',
       lesson: 'A stolen password is not enough when the code lands on a phone you do not have.',
     },
     guessed: {
@@ -29,7 +29,7 @@ const OUTCOMES = {
     stopped: {
       ...BLOCKED,
       title: 'The break-in was stopped.',
-      text: 'The number was sent to Joren\'s phone. You never see his phone, so a stolen password on its own gets you nowhere.',
+      text: 'The number was sent to John\'s phone. You never see his phone, so a stolen password on its own gets you nowhere.',
       lesson: 'A stolen password is not enough when a code goes to your own phone.',
     },
   },
@@ -59,13 +59,13 @@ const OUTCOMES = {
     approved: {
       ...SIGNED_IN,
       title: 'You got in.',
-      text: 'Joren tapped "Yes" without reading it, out of habit. Nothing was cracked and nothing was guessed. That one tap let you straight in.',
+      text: 'John tapped "Yes" without reading it, out of habit. Nothing was cracked and nothing was guessed. That one tap let you straight in.',
       lesson: 'Never tap "Yes" until you have read where the login is coming from.',
     },
     denied: {
       ...BLOCKED,
       title: 'The break-in was stopped.',
-      text: 'Joren read the message, saw a login he never started coming from a strange place, and tapped "No". You were locked out.',
+      text: 'John read the message, saw a login he never started coming from a strange place, and tapped "No". You were locked out.',
       lesson: 'If a login pops up and you did not start it, always tap "No".',
     },
   },
@@ -188,6 +188,20 @@ function reset() {
   setPhoneDock(false);
 }
 
+const textSizeButtons = document.querySelectorAll('[data-text-scale]');
+
+function setTextScale(value) {
+  document.documentElement.style.setProperty('--text-scale', value);
+
+  textSizeButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.textScale === value));
+  });
+}
+
+textSizeButtons.forEach((button) => {
+  button.addEventListener('click', () => setTextScale(button.dataset.textScale));
+});
+
 function fitLaptop() {
   const available = window.innerWidth - 48;
   const scale = Math.max(0.35, Math.min(1, available / 1414));
@@ -200,7 +214,7 @@ window.addEventListener('resize', fitLaptop);
 function setPhoneDock(up) {
   phoneDock.classList.toggle('up', up);
   phoneToggle.setAttribute('aria-expanded', String(up));
-  phoneToggle.innerHTML = up ? '<b>Put the phone down</b>' : "<b>Look at Joren's phone</b>";
+  phoneToggle.innerHTML = up ? '<b>Put the phone down</b>' : "<b>Look at John's phone</b>";
 }
 
 phoneToggle.addEventListener('click', () => {
