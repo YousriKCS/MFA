@@ -1,3 +1,23 @@
+/* The two devices side by side */
+.stage {
+  display: flex;
+  gap: 56px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 40px 24px;
+}
+
+.device-frame--laptop {
+  width: 707px;
+  height: 452px;
+}
+
+.device-frame--phone {
+  width: 275px;
+  height: 590px;
+}
+
 /*
 * From https://www.w3schools.com/HOWTO/howto_css_devices.asp
 */
@@ -7,11 +27,15 @@
   position: relative;
   width: 360px;
   height: 640px;
-  margin: auto;
+  margin: 0;
   border: 16px black solid;
   border-top-width: 60px;
   border-bottom-width: 60px;
   border-radius: 36px;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
 }
 
 /* The horizontal line on the top of the device */
@@ -53,10 +77,9 @@
 .laptop {
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
-  -webkit-transform: scale(.6) translate(-50%); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
-  transform: scale(.6) translate(-50%); /* Scaled down for a better Try-it experience (change to 1 for full scale) */
-  left: 50%;
-  position: absolute;
+  -webkit-transform: scale(.5);
+  transform: scale(.5);
+  position: relative;
   width: 1366px;
   height: 800px;
   border-radius: 6px;
@@ -64,7 +87,6 @@
   border-color: black;
   border-width: 24px 24px 80px;
   background-color: black;
-
 }
 
 /* The screen (or content) of the device */
