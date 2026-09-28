@@ -1,3 +1,19 @@
+.briefing {
+  max-width: 60ch;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.leaked-creds {
+  display: flex;
+  gap: 32px;
+  margin: 16px 0;
+}
+
+.leaked-creds dd {
+  margin: 0;
+}
+
 .mfa-picker {
   display: flex;
   gap: 12px;
