@@ -15,6 +15,42 @@ body, h1, h2, h3, h4, h5, h6 {
   box-sizing: content-box;
 }
 
+.sim-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.sim-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+}
+
+.sim-card h3 {
+  margin-top: 0;
+}
+
+.sim-card .w3-button {
+  margin-top: auto;
+}
+
+.sim-icon {
+  margin: 0 0 16px;
+  font-size: 56px;
+  line-height: 1;
+  text-align: center;
+}
+
+.tutorial-steps {
+  padding-left: 20px;
+}
+
+.tutorial-steps li {
+  margin-bottom: 12px;
+}
+
 .leaked-creds {
   display: flex;
   gap: 40px;
@@ -444,6 +480,20 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+  font-size: calc(15px * var(--text-scale));
+}
+
+.w3-content h2 {
+  font-size: calc(30px * var(--text-scale));
+}
+
+.w3-content h3,
+.outcome h3 {
+  font-size: calc(24px * var(--text-scale));
+}
+
+.w3-content .w3-button,
+.outcome .w3-button {
   font-size: calc(15px * var(--text-scale));
 }
 

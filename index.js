@@ -188,20 +188,6 @@ function reset() {
   setPhoneDock(false);
 }
 
-const textSizeButtons = document.querySelectorAll('[data-text-scale]');
-
-function setTextScale(value) {
-  document.documentElement.style.setProperty('--text-scale', value);
-
-  textSizeButtons.forEach((button) => {
-    button.setAttribute('aria-pressed', String(button.dataset.textScale === value));
-  });
-}
-
-textSizeButtons.forEach((button) => {
-  button.addEventListener('click', () => setTextScale(button.dataset.textScale));
-});
-
 function fitLaptop() {
   const available = window.innerWidth - 48;
   const scale = Math.max(0.35, Math.min(1, available / 1414));
