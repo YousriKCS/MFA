@@ -286,14 +286,58 @@
   font-weight: bold;
 }
 
+.outcome {
+  max-width: 990px;
+  margin-top: 24px;
+  padding: 20px 24px;
+  border: 1px solid #b9c0cc;
+}
+
+.outcome h2 {
+  margin: 0 0 12px;
+}
+
+.outcome p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.outcome button {
+  margin: 20px 12px 0 0;
+  padding: 12px 20px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.remember {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background-color: #f2f4f8;
+}
+
+.remember .remember-label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.remember p {
+  margin: 0;
+}
+
+.remember #outcome-lesson {
+  font-weight: bold;
+}
+
 .device-frame--laptop {
-  width: 707px;
-  height: 452px;
+  width: 990px;
+  height: 633px;
 }
 
 .device-frame--phone {
-  width: 275px;
-  height: 590px;
+  width: 294px;
+  height: 635px;
 }
 
 /*
@@ -312,8 +356,8 @@
   border-radius: 36px;
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
-  -webkit-transform: scale(.7);
-  transform: scale(.7);
+  -webkit-transform: scale(.75);
+  transform: scale(.75);
 }
 
 /* The horizontal line on the top of the device */
@@ -355,8 +399,8 @@
 .laptop {
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
-  -webkit-transform: scale(.5);
-  transform: scale(.5);
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
   position: relative;
   width: 1366px;
   height: 800px;

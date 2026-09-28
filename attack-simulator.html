@@ -74,15 +74,27 @@
                     <p class="form-error" id="code-error" hidden>That code is not right.</p>
                   </form>
 
-                  <div class="login-card" id="done-card" hidden>
-                    <h1>Account access granted</h1>
-                    <p class="form-note">You are inside Joren's bank account.</p>
-                    <button type="button" id="restart">Start over</button>
+                  <div class="login-card" id="result-card" hidden>
+                    <h1 id="result-title"></h1>
+                    <p class="form-note" id="result-text"></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="outcome" id="outcome" hidden>
+          <h2 id="outcome-title"></h2>
+          <p id="outcome-text"></p>
+
+          <div class="remember">
+            <p class="remember-label">Remember this</p>
+            <p id="outcome-lesson"></p>
+          </div>
+
+          <button type="button" id="restart">Try again</button>
+          <button type="button" id="try-other">Try a different check</button>
         </div>
       </div>
 
