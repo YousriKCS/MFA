@@ -90,8 +90,8 @@ const passwordInput = document.getElementById('password');
 const codeInput = document.getElementById('code');
 const loginError = document.getElementById('login-error');
 const codeError = document.getElementById('code-error');
-const phoneCover = document.getElementById('phone-cover');
-const phoneScreen = document.getElementById('phone-screen');
+const phoneDock = document.getElementById('phone-dock');
+const phoneToggle = document.getElementById('phone-toggle');
 const phoneIdle = document.getElementById('phone-idle');
 const phoneSms = document.getElementById('phone-sms');
 const phoneApp = document.getElementById('phone-app');
@@ -185,14 +185,32 @@ function reset() {
   phoneApp.hidden = true;
   phonePush.hidden = true;
   phoneIdle.hidden = false;
-  phoneScreen.hidden = true;
-  phoneCover.hidden = false;
+  setPhoneDock(false);
 }
 
-document.getElementById('reveal-phone').addEventListener('click', () => {
-  phoneRevealed = true;
-  phoneCover.hidden = true;
-  phoneScreen.hidden = false;
+function fitLaptop() {
+  const available = window.innerWidth - 48;
+  const scale = Math.max(0.35, Math.min(1, available / 1414));
+  document.documentElement.style.setProperty('--laptop-scale', scale.toFixed(3));
+}
+
+fitLaptop();
+window.addEventListener('resize', fitLaptop);
+
+function setPhoneDock(up) {
+  phoneDock.classList.toggle('up', up);
+  phoneToggle.setAttribute('aria-expanded', String(up));
+  phoneToggle.innerHTML = up ? '<b>Put the phone down</b>' : "<b>Look at Joren's phone</b>";
+}
+
+phoneToggle.addEventListener('click', () => {
+  const up = !phoneDock.classList.contains('up');
+
+  if (up) {
+    phoneRevealed = true;
+  }
+
+  setPhoneDock(up);
 });
 
 picker.addEventListener('click', (event) => {
@@ -202,7 +220,9 @@ picker.addEventListener('click', (event) => {
   selectedMfa = button.dataset.mfa;
 
   picker.querySelectorAll('button').forEach((other) => {
-    other.classList.toggle('active', other === button);
+    const chosen = other === button;
+    other.classList.toggle('w3-black', chosen);
+    other.classList.toggle('w3-white', !chosen);
   });
 
   reset();

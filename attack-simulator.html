@@ -5,36 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Attack Simulator</title>
+    <link rel="stylesheet" href="w3.css">
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <header class="briefing">
-      <h1>You bought a stolen password</h1>
-      <p>A webshop was breached. This login was in the dump.</p>
+  <body class="w3-light-grey">
+    <div class="w3-bar w3-black w3-card">
+      <span class="w3-bar-item w3-wide"><b>ATTACK SIMULATOR</b></span>
+    </div>
 
-      <dl class="leaked-creds">
-        <div>
-          <dt>Email</dt>
-          <dd>joren@example.com</dd>
+    <div class="w3-content w3-container w3-padding-32" style="max-width:820px">
+      <header class="briefing">
+        <h2><b>You bought a stolen password</b></h2>
+        <p>A webshop was breached. This login was in the dump.</p>
+
+        <dl class="leaked-creds w3-card w3-white w3-padding">
+          <div>
+            <dt>Email</dt>
+            <dd>joren@example.com</dd>
+          </div>
+          <div>
+            <dt>Password</dt>
+            <dd>Summer2023</dd>
+          </div>
+        </dl>
+
+        <p>Word on the street is that he reuses it everywhere. Lets try getting into his bank.</p>
+      </header>
+
+      <div class="mfa-picker w3-row w3-padding-16">
+        <div class="w3-third">
+          <button type="button" class="w3-button w3-block w3-black w3-border" data-mfa="text">
+            Code by text
+          </button>
         </div>
-        <div>
-          <dt>Password</dt>
-          <dd>Summer2023</dd>
+        <div class="w3-third">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="app">
+            Code in an app
+          </button>
         </div>
-      </dl>
-
-      <p>Word on the street is that he reuses it everywhere. Lets try getting into his bank.</p>
-    </header>
-
-    <div class="mfa-picker">
-      <button type="button" class="active" data-mfa="text">Code by text</button>
-      <button type="button" data-mfa="app">Code in an app</button>
-      <button type="button" data-mfa="popup">Code by popup</button>
+        <div class="w3-third">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="popup">
+            Code by popup
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="stage">
       <div class="device">
-        <p class="device-label">Attacker's machine</p>
+        <p class="device-label w3-wide"><b>ATTACKER'S MACHINE</b></p>
         <div class="device-frame--laptop">
           <div class="laptop">
             <div class="content">
@@ -100,32 +119,36 @@
           </div>
         </div>
 
-        <div class="outcome" id="outcome" hidden>
-          <h2 id="outcome-title"></h2>
+        <div class="outcome w3-card w3-white w3-padding-large" id="outcome" hidden>
+          <h3 id="outcome-title"></h3>
           <p id="outcome-text"></p>
 
-          <div class="remember">
-            <p class="remember-label">Remember this</p>
+          <div class="remember w3-light-grey w3-padding w3-leftbar w3-border-black">
+            <p class="remember-label w3-wide"><b>REMEMBER THIS</b></p>
             <p id="outcome-lesson"></p>
           </div>
 
-          <button type="button" id="restart">Try again</button>
-          <button type="button" id="try-other">Try a different check</button>
+          <p>
+            <button type="button" class="w3-button w3-black" id="restart">Try again</button>
+            <button type="button" class="w3-button w3-white w3-border" id="try-other">
+              Try a different check
+            </button>
+          </p>
         </div>
       </div>
+    </div>
 
-      <div class="device">
-        <p class="device-label">Joren's phone</p>
+    <div class="phone-dock" id="phone-dock">
+        <button type="button" class="phone-toggle w3-button w3-black w3-block"
+                id="phone-toggle" aria-expanded="false">
+          <b>Look at Joren's phone</b>
+        </button>
+
         <div class="device-frame--phone">
           <div class="smartphone">
             <div class="content">
               <div class="phone">
-                <div class="phone-cover" id="phone-cover">
-                  <p>Joren has this phone. You do not.</p>
-                  <button type="button" id="reveal-phone">Look at his phone</button>
-                </div>
-
-                <div class="phone-screen" id="phone-screen" hidden>
+                <div class="phone-screen" id="phone-screen">
                   <div class="phone-status">
                     <span>9:41</span>
                     <span>4G</span>
@@ -205,8 +228,8 @@
           </div>
         </div>
       </div>
-    </div>
 
     <script src="index.js"></script>
+
   </body>
 </html>
