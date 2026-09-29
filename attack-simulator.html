@@ -43,19 +43,24 @@
       </header>
 
       <div class="mfa-picker w3-row w3-padding-16">
-        <div class="w3-third">
+        <div class="w3-quarter">
           <button type="button" class="w3-button w3-block w3-black w3-border" data-mfa="text">
             Code by text
           </button>
         </div>
-        <div class="w3-third">
+        <div class="w3-quarter">
           <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="app">
             Code in an app
           </button>
         </div>
-        <div class="w3-third">
+        <div class="w3-quarter">
           <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="popup">
-            Code by popup
+            Yes or No popup
+          </button>
+        </div>
+        <div class="w3-quarter">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="match">
+            Popup with a number
           </button>
         </div>
       </div>
@@ -64,6 +69,13 @@
     <div class="stage">
       <div class="device">
         <p class="device-label w3-wide"><b>ATTACKER'S MACHINE</b></p>
+
+        <p class="steps">
+          <span class="step-bar" data-step="1"></span>
+          <span class="step-bar" data-step="2"></span>
+          <b class="step-label" id="step-label"></b>
+        </p>
+
         <div class="device-frame--laptop">
           <div class="laptop">
             <div class="content">
@@ -105,23 +117,41 @@
 
                   <div class="login-card" id="wait-card" hidden>
                     <h1>One more check</h1>
-                    <p class="form-note">
-                      We sent a request to his phone. It will ask him to tap this number.
-                    </p>
+                    <p class="form-note" id="wait-note"></p>
 
-                    <p class="wait-status">Waiting for him to tap "Yes"...</p>
+                    <p class="wait-status">Waiting for him to answer...</p>
 
-                    <div class="match-number">
+                    <div class="match-number" id="match-box" hidden>
                       <p class="match-label">Number to match</p>
                       <p class="match-value" id="match-number"></p>
                     </div>
 
-                    <p class="wait-note">You can only wait. It is all up to John now.</p>
+                    <div class="attack-extra">
+                      <p class="form-note" id="fatigue-note">
+                        He has not answered. You can keep asking.
+                      </p>
+                      <button type="button" id="send-again">Send another request</button>
+                    </div>
                   </div>
 
                   <div class="login-card" id="result-card" hidden>
                     <h1 id="result-title"></h1>
                     <p class="form-note" id="result-text"></p>
+                  </div>
+
+                  <div class="login-card" id="account-card" hidden>
+                    <p class="account-owner">John Doe</p>
+                    <h1>Current account</h1>
+                    <p class="account-number">NL24 JUBA 0417 8829 61</p>
+
+                    <p class="account-balance" id="account-balance">&euro;4,820.15</p>
+
+                    <div class="account-actions">
+                      <button type="button" id="transfer">Transfer money</button>
+                      <button type="button" id="statements">View statements</button>
+                    </div>
+
+                    <p class="account-done" id="account-done" hidden></p>
                   </div>
                 </div>
               </div>
@@ -208,12 +238,12 @@
                 </div>
 
                 <div class="phone-push" id="phone-push" hidden>
+                  <p class="push-count" id="push-count" hidden></p>
+
                   <div class="push-card">
                     <p class="push-from">JU Bank <span>now</span></p>
                     <p class="push-title">Are you trying to sign in?</p>
-                    <p class="push-sub">Only tap "Yes" if you started this yourself.</p>
-
-                    <p class="push-number" id="push-number"></p>
+                    <p class="push-sub" id="push-sub"></p>
 
                     <ul class="push-facts">
                       <li>Kyiv, Ukraine</li>
@@ -221,16 +251,19 @@
                       <li class="push-warn">Not your usual device</li>
                     </ul>
 
-                    <div class="push-actions">
+                    <div class="push-actions" id="push-plain" hidden>
                       <button type="button" id="push-deny">No, that's not me</button>
                       <button type="button" id="push-allow">Yes, allow it</button>
                     </div>
+
+                    <div class="number-choices" id="number-choices" hidden></div>
+
+                    <div class="push-actions" id="push-match" hidden>
+                      <button type="button" id="match-deny">None of these, it is not me</button>
+                    </div>
                   </div>
 
-                  <p class="phone-footnote">
-                    You are John now. He is at home and did not try to log in. What should he
-                    tap?
-                  </p>
+                  <p class="phone-footnote" id="push-footnote"></p>
                 </div>
               </div>
             </div>

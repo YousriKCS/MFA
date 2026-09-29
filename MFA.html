@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MFA Safety Training</title>
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="w3-light-grey">
+    <div class="w3-bar w3-black w3-card">
+      <span class="w3-bar-item w3-wide"><b>MFA SAFETY TRAINING</b></span>
+
+      <div class="w3-bar-item w3-right text-size">
+        <span>Text size</span>
+        <button type="button" class="w3-button w3-white" data-text-scale="1"
+                aria-pressed="true" aria-label="Normal text">A</button>
+        <button type="button" class="w3-button w3-white" data-text-scale="1.25"
+                aria-pressed="false" aria-label="Large text">A</button>
+        <button type="button" class="w3-button w3-white" data-text-scale="1.5"
+                aria-pressed="false" aria-label="Extra large text">A</button>
+      </div>
+    </div>
+
+    <div class="w3-content w3-container w3-padding-32" style="max-width:820px">
+      <h2><b>Learn how MFA protects you</b></h2>
+      <p>Choose a simulation to begin.</p>
+
+      <div class="sim-cards">
+        <div class="sim-card w3-card w3-white w3-padding-large">
+          <p class="sim-icon" aria-hidden="true">&#128737;</p>
+
+          <h3><b>Attack Simulator</b></h3>
+          <p>See how MFA stops an attacker who already has the password.</p>
+
+          <a class="w3-button w3-black w3-block" href="attack-info.html">
+            Start simulation
+          </a>
+        </div>
+
+        <div class="sim-card w3-card w3-white w3-padding-large">
+          <p class="sim-icon" aria-hidden="true">&#128241;</p>
+
+          <h3><b>Authentication Request Simulator</b></h3>
+          <p>Practise responding to unexpected login requests.</p>
+
+          <a class="w3-button w3-black w3-block" href="mfa-info.html">
+            Start simulation
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="accessibility.js"></script>
+  </body>
+</html>
