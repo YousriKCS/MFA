@@ -402,7 +402,6 @@ loginForm.addEventListener('submit', (event) => {
     startPush();
     phonePush.hidden = false;
     waitCard.hidden = false;
-    setPhoneDock(true);
     return;
   }
 
@@ -454,6 +453,10 @@ document.getElementById('statements').addEventListener('click', () => {
 
 document.getElementById('send-again').addEventListener('click', () => {
   pushRequests += 1;
+
+  if (selectedMfa === 'popup' && pushRequests === 3) {
+    setPhoneDock(true);
+  }
 
   if (selectedMfa === 'match') {
     matchValue = randomNumber();
