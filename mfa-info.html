@@ -3,40 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication Request Information</title>
+    <title>Authentication Request Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <header class="topbar">
+        <div class="website-name">
+            MFA SAFETY TRAINING
+        </div>
+        <div class="text-size">
+            <span>Text size</span>
+            <button type="button"
+                    data-text-scale="1"
+                    aria-label="Normal text">
+                A
+            </button>
+            <button type="button"
+                    data-text-scale="1.25"
+                    aria-label="Large text">
+                A
+            </button>
+            <button type="button"
+                    data-text-scale="1.5"
+                    aria-label="Extra large text">
+                A
+            </button>
+        </div>
+    </header>
+    <main class="info-page tutorial-page">
+        <section class="info-card">
+            <h1>Authentication Request Simulator</h1>
+            <p>
+                Imagine that an authentication request suddenly appears
+                on your phone. It asks you to approve a login to one of
+                your accounts.
+            </p>
+            <p>
+                Some requests are connected to logins that you started.
+                Others may come from someone who has obtained your password
+                and is trying to access your account.
+            </p>
 
-<header>
-    🛡️ MFA Safety Training
-</header>
+            <h2>What you will do</h2>
 
-<main class="info-page">
-    <div class="info-box">
-        <div class="info-icon">📱</div>
+            <ol class="tutorial-steps">
+                <li>
+                    <strong>Read the authentication request.</strong>
+                    Look carefully at the account, location, device and
+                    time shown in the request.
+                </li>
 
-      <h1>Authentication Request Simulator</h1>
+                <li>
+                    <strong>Decide whether you started the login.</strong>
+                    Think about whether you are currently trying to access
+                    that account.
+                </li>
 
-<p>
-    Sometimes you may receive an authentication request when you are not trying to log in.
-</p>
+                <li>
+                    <strong>Approve or reject the request.</strong>
+                    Choose the action that you believe is safest.
+                </li>
 
-<p>
-    In this simulation, you will practise deciding whether you should approve or reject different login requests.
-</p>
-
-<div class="notice">
-    Remember: If you are not trying to log in, reject the request. Someone else may be trying to access your account.
-</div>
-        <a href="mfa-simulation.html" class="button">
-            Begin simulation
-        </a>
-
-        <a href="MFA.html" class="back-link">← Back to homepage</a>
-    </div>
-</main>
-
+                <li>
+                    <strong>Read the result.</strong>
+                    The simulation will explain whether your decision was
+                    correct and what could have happened to the account.
+                </li>
+            </ol>
+            <p>
+                Remember that you should only approve an authentication
+                request when you are personally trying to log in.
+            </p>
+            <div class="info-message">
+                <strong>This is a safe practice page.</strong>
+                No real accounts are used, and your decisions are not
+                stored or sent anywhere.
+            </div>
+            <div class="info-actions">
+                <a href="mfa-simulation.html"
+                   class="info-button">
+                    Begin simulation
+                </a>
+                <a href="MFA.html"
+                   class="info-button back-button">
+                    Back to homepage
+                </a>
+            </div>
+        </section>
+    </main>
+    <script src="accessibility.js"></script>
 </body>
 </html>

@@ -3,41 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attack Simulator Information</title>
+    <title>Attack Simulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-    🛡️ MFA Safety Training
-</header>
+    <header class="topbar">
+        <div class="website-name">
+            MFA SAFETY TRAINING
+        </div>
+        <div class="text-size">
+            <span>Text size</span>
+            <button type="button"
+                    data-text-scale="1"
+                    aria-label="Normal text">
+                A
+            </button>
+            <button type="button"
+                    data-text-scale="1.25"
+                    aria-label="Large text">
+                A
+            </button>
+            <button type="button"
+                    data-text-scale="1.5"
+                    aria-label="Extra large text">
+                A
+            </button>
+        </div>
+    </header>
 
-<main class="info-page">
-    <div class="info-box">
-        <div class="info-icon">🛡️</div>
+    <main class="info-page tutorial-page">
+        <section class="info-card">
+            <h1>Attack Simulator</h1>
+            <p>
+                Someone has obtained John's email address and password
+                from a criminal forum. They are about to try using them
+                to access his bank account.
+            </p>
 
-<h1>Attack Simulator</h1>
+            <p>
+                You are going to play the attacker. The password is correct,
+                so the only thing stopping you from accessing his money is
+                the second security check on his account.
+            </p>
+            <h2>What you will do</h2>
+            <ol class="tutorial-steps">
+                <li>
+                    <strong>Choose a second security check.</strong>
+                    You can select a code sent by text message, a code from
+                    an authentication app, or an approval request sent to
+                    John's phone.
+                </li>
 
-<p>
-    Imagine that someone has discovered your username and password and is trying to access your account.
-</p>
+                <li>
+                    <strong>Sign in with the stolen password.</strong>
+                    The login information will already be displayed and
+                    ready to use.
+                </li>
 
-<p>
-    In this simulation, you will see how MFA can stop them, even when they enter the correct password.
-</p>
+                <li>
+                    <strong>Try to pass the second security check.</strong>
+                    You can view John's phone during the demonstration,
+                    although a real attacker would not have access to it.
+                </li>
 
-<div class="notice">
-    This is only a safe demonstration. We do not use any real accounts or passwords.
-</div>
-
-        <a href="attack-simulation.html" class="button">
-            Begin simulation
-        </a>
-
-        <a href="MFA.html" class="back-link">← Back to homepage</a>
-    </div>
-</main>
-
+                <li>
+                    <strong>See what happens.</strong>
+                    After every attempt, you will learn whether the login
+                    succeeded and why.
+                </li>
+            </ol>
+            <p>
+                Try the simulation with every authentication method to
+                compare how each one protects the account.
+            </p>
+            <div class="info-message">
+                <strong>This is a safe practice page.</strong>
+                JU Bank is not a real bank, John is not a real person,
+                and nothing you enter is stored or sent anywhere.
+            </div>
+            <div class="info-actions">
+                <a href="attack-simulation.html"
+                   class="info-button">
+                    Begin simulation
+                </a>
+                <a href="MFA.html"
+                   class="info-button back-button">
+                    Back to homepage
+                </a>
+            </div>
+        </section>
+    </main>
+    <script src="accessibility.js"></script>
 </body>
 </html>

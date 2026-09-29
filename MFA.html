@@ -1,40 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <title>MFA Safety Training</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <header class="topbar">
 
-    <header>
-        🛡️ MFA Safety Training
+        <div class="website-name">
+            MFA SAFETY TRAINING
+        </div>
+        <div class="text-size">
+            <span>Text size</span>
+
+            <button
+                type="button"
+                data-text-scale="1"
+                aria-label="Normal text">
+                A
+            </button>
+
+            <button
+                type="button"
+                data-text-scale="1.25"
+                aria-label="Large text">
+                A
+            </button>
+
+            <button
+                type="button"
+                data-text-scale="1.5"
+                aria-label="Extra large text">
+                A
+            </button>
+        </div>
+
     </header>
 
-    <main>
+    <main class="landing-page">
+
         <h1>Learn how MFA protects you</h1>
-        <p class="subtitle">Choose a simulation to begin.</p>
 
-        <div class="simulators">
+        <p class="landing-introduction">
+            Choose a simulation to begin.
+        </p>
 
-            <div class="card">
-                <div class="icon">🛡️</div>
+        <div class="simulation-cards">
+
+            <section class="simulation-card">
+
+                <div class="card-icon" aria-hidden="true">
+                    🛡
+                </div>
 
                 <h2>Attack Simulator</h2>
 
-                <p>See how MFA stops an attacker.</p>
+                <p>
+                    See how MFA stops an attacker who already has
+                    the password.
+                </p>
 
-                <a class="button" href="attack-info.html">
+                <a href="attack-info.html"
+                   class="start-button">
                     Start simulation
                 </a>
-            </div>
 
-            <div class="card">
-                <div class="icon">📱</div>
+            </section>
+
+            <section class="simulation-card">
+
+                <div class="card-icon" aria-hidden="true">
+                    📱
+                </div>
 
                 <h2>Authentication Request Simulator</h2>
 
@@ -42,13 +84,13 @@
                     Practise responding to unexpected login requests.
                 </p>
 
-                <a class="button" href="mfa-info.html">
+                <a href="mfa-info.html"
+                   class="start-button">
                     Start simulation
                 </a>
-            </div>
-
+            </section>
         </div>
     </main>
-
+    <script src="accessibility.js"></script>
 </body>
 </html>
