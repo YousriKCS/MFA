@@ -1,18 +1,33 @@
-const textSizeButtons = document.querySelectorAll("[data-text-scale]");
+const STORED_SCALE = 'mfa-text-scale';
 
-textSizeButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        const scale = button.getAttribute("data-text-scale");
+const textSizeButtons = document.querySelectorAll('[data-text-scale]');
 
-        document.documentElement.style.setProperty(
-            "--text-scale",
-            scale
-        );
+function setTextScale(value) {
+  document.documentElement.style.setProperty('--text-scale', value);
 
-        textSizeButtons.forEach(function (otherButton) {
-            otherButton.setAttribute("aria-pressed", "false");
-        });
+  textSizeButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.textScale === value));
+  });
 
-        button.setAttribute("aria-pressed", "true");
-    });
+  try {
+    localStorage.setItem(STORED_SCALE, value);
+  } catch (error) {
+    return;
+  }
+}
+
+textSizeButtons.forEach((button) => {
+  button.addEventListener('click', () => setTextScale(button.dataset.textScale));
 });
+
+let savedScale = null;
+
+try {
+  savedScale = localStorage.getItem(STORED_SCALE);
+} catch (error) {
+  savedScale = null;
+}
+
+if (savedScale) {
+  setTextScale(savedScale);
+}
