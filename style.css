@@ -1,140 +1,736 @@
-/* Website colours */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(montserrat-latin.woff2) format("woff2");
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.laptop,
+.smartphone {
+  box-sizing: content-box;
+}
+
+.sim-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.sim-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 280px;
+}
+
+.sim-card h3 {
+  margin-top: 0;
+}
+
+.sim-card .w3-button {
+  margin-top: auto;
+}
+
+.sim-icon {
+  margin: 0 0 16px;
+  font-size: 56px;
+  line-height: 1;
+  text-align: center;
+}
+
+.tutorial-steps {
+  padding-left: 20px;
+}
+
+.tutorial-steps li {
+  margin-bottom: 12px;
+}
+
+.leaked-creds {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.leaked-creds dd {
+  margin: 2px 0 0;
+  font-weight: bold;
+}
+
+.browser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: calc(28px * var(--text-scale));
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 32px;
+  height: 84px;
+  background-color: #e4e7ec;
+}
+
+.browser-bar .dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #c2c7d0;
+}
+
+.browser-bar .url-bar {
+  flex: 1;
+  margin-left: 24px;
+  padding: 14px 28px;
+  font-size: .857em;
+  color: #5f6368;
+  background-color: white;
+  border-radius: 999px;
+}
+
+.browser-page {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f2f5f9;
+}
+
+.bank-header {
+  padding: 28px 56px;
+  font-size: 1.214em;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: white;
+  background-color: #0a4d8c;
+}
+
+.login-card {
+  box-sizing: border-box;
+  width: 22.86em;
+  max-width: 100%;
+  margin: 32px auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+}
+
+.login-card h1 {
+  margin: 0 0 28px;
+  font-family: inherit;
+  font-size: 1.429em;
+  font-weight: bold;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: .857em;
+  color: #5a6472;
+}
+
+.login-card input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  font: inherit;
+  border: 2px solid #cfd5df;
+  border-radius: 8px;
+}
+
+.login-card input:focus {
+  border-color: #0a4d8c;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 18px;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+  background-color: #0a4d8c;
+  border: none;
+  border-radius: 8px;
+}
+
+.login-card button:hover {
+  background-color: #0c5ca6;
+}
+
+.login-card .fine-print {
+  margin: 20px 0 0;
+  font-size: .786em;
+  text-align: center;
+  color: #0a4d8c;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid #0a4d8c;
+  outline-offset: 2px;
+}
+
+.laptop :focus-visible {
+  outline-width: 5px;
+}
+
+.form-error {
+  margin: 24px 0 0;
+  color: #a3341f;
+}
+
+.attack-extra {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 2px solid #cfd5df;
+}
+
+.account-owner {
+  margin: 0;
+  font-size: .786em;
+  color: #5a6472;
+}
+
+.account-number {
+  margin: 0 0 24px;
+  font-size: .857em;
+  color: #5a6472;
+}
+
+.account-balance {
+  margin: 0 0 32px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.account-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.account-actions button {
+  flex: 1;
+  padding: 18px;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+  background-color: #0a4d8c;
+  border: none;
+  border-radius: 8px;
+}
+
+.account-actions button:hover {
+  background-color: #0c5ca6;
+}
+
+.account-done {
+  margin: 24px 0 0;
+  color: #a3341f;
+}
+
+.form-note {
+  margin: 0 0 32px;
+  color: #5a6472;
+}
+
+.wait-status {
+  margin: 0 0 28px;
+  color: #5a6472;
+}
+
+.match-number {
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #cfd5df;
+}
+
+.match-label {
+  margin: 0;
+  font-size: .714em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #5a6472;
+}
+
+.match-value {
+  margin: 8px 0 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 20px;
+}
+
+.phone-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  font-size: .8em;
+  color: #5a6472;
+}
+
+.phone-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.phone-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #5a6472;
+}
+
+.phone-idle p {
+  margin: 0;
+}
+
+.phone-idle .phone-clock {
+  margin-bottom: 6px;
+  font-size: 2.8em;
+  font-weight: 200;
+  color: #3a4250;
+}
+
+.phone-sms {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sms-header {
+  padding: 14px 18px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #dfe3ea;
+}
+
+.sms-thread {
+  flex: 1;
+  padding: 16px;
+  background-color: #f4f5f7;
+}
+
+.sms-bubble {
+  padding: 14px 16px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+.sms-bubble p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sms-bubble #sms-code {
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.sms-time {
+  display: block;
+  margin-top: 8px;
+  font-size: .75em;
+  color: #5a6472;
+}
+
+.phone-footnote {
+  margin: 20px 0 0;
+  padding: 0 4px;
+  font-size: .75em;
+  line-height: 1.4;
+  text-align: center;
+  color: #5a6472;
+}
+
+.phone-app,
+.phone-push {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #f4f5f7;
+}
+
+.sms-thread {
+  overflow-y: auto;
+}
+
+.app-card {
+  padding: 16px;
+  background-color: white;
+  border-radius: 14px;
+}
+
+.app-name {
+  margin: 0;
+  font-size: .75em;
+  color: #5a6472;
+}
+
+.app-code {
+  margin: 8px 0 0;
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: .06em;
+}
+
+.app-countdown {
+  height: 6px;
+  margin-top: 12px;
+  background-color: #dfe3ea;
+}
+
+.app-countdown span {
+  display: block;
+  height: 100%;
+  background-color: #0a4d8c;
+}
+
+.app-note {
+  margin: 10px 0 0;
+  font-size: .75em;
+  color: #5a6472;
+}
+
+.push-card {
+  padding: 16px;
+  background-color: white;
+  border-radius: 14px;
+}
+
+.push-from {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.push-from span {
+  font-weight: normal;
+  color: #5a6472;
+}
+
+.push-title {
+  margin: 10px 0 0;
+  font-weight: bold;
+}
+
+.push-sub {
+  margin: 4px 0 0;
+  font-size: .8em;
+  color: #5a6472;
+}
+
+.push-count {
+  margin: 0 0 10px;
+  padding: 6px 10px;
+  font-size: .75em;
+  font-weight: bold;
+  text-align: center;
+  color: #a3341f;
+  background-color: #fdecea;
+}
+
+.number-choices {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.number-choices button {
+  flex: 1;
+  min-height: 60px;
+  font: inherit;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.push-facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .75em;
+}
+
+.push-facts li {
+  margin-bottom: 5px;
+  padding: 5px 8px;
+  background-color: #f2f4f8;
+}
+
+.push-facts .push-warn {
+  color: #a3341f;
+  background-color: #fdecea;
+}
+
+.push-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.push-actions button {
+  flex: 1;
+  min-height: 60px;
+  padding: 14px 6px;
+  font: inherit;
+  font-size: .85em;
+  cursor: pointer;
+}
+
+/* The two devices side by side */
+.stage {
+  display: flex;
+  gap: 56px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 40px 24px;
+}
+
+.device {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.device-label {
+  margin: 0;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.step-bar {
+  width: 30px;
+  height: 5px;
+  background-color: #c2c7d0;
+}
+
+.step-bar.on {
+  background-color: #000;
+}
+
+.step-label {
+  margin-left: 10px;
+}
+
+.outcome {
+  max-width: calc(1414px * var(--laptop-scale));
+  margin-top: 24px;
+}
+
+.remember {
+  margin-top: 20px;
+}
+
+.remember .remember-label {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.remember #outcome-lesson {
+  margin: 0;
+  font-weight: bold;
+}
 
 :root {
-    --background-color: #f5f7fa;
-    --card-color: #ffffff;
-    --main-text-color: #17233c;
-    --secondary-text-color: #555555;
-    --button-color: #2474d2;
-    --button-hover-color: #185ba8;
-    --button-text-color: #ffffff;
-    --border-color: #dddddd;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+  --laptop-scale: .8;
+  --phone-scale: calc(.8 * min(var(--text-scale), 1.25));
+  --text-scale: 1;
 }
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--main-text-color);
-    text-align: center;
-}
-header {
-    padding: 20px;
-    background-color: var(--card-color);
-    border-bottom: 1px solid var(--border-color);
-    font-size: 24px;
-    font-weight: bold;
-}
-main {
-    padding: 70px 20px;
+  font-size: calc(15px * var(--text-scale));
 }
 
-h1 {
-    margin-bottom: 10px;
-    font-size: 42px;
-}
-.subtitle {
-    margin-bottom: 50px;
-    color: var(--secondary-text-color);
-    font-size: 20px;
+.w3-content h2 {
+  font-size: calc(30px * var(--text-scale));
 }
 
-.simulators {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+.w3-content h3,
+.outcome h3 {
+  font-size: calc(24px * var(--text-scale));
 }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
+.w3-content .w3-button,
+.outcome .w3-button {
+  font-size: calc(15px * var(--text-scale));
 }
 
-.card {
-    width: 330px;
-    padding: 35px;
-    background-color: var(--card-color);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px var(--shadow-color);
-    display: flex;
-    flex-direction: column;
+.text-size {
+  padding: 0;
 }
 
-.card h2 {
-    min-height: 60px;
+.text-size span {
+  margin-right: 8px;
 }
 
-.card p {
-    min-height: 55px;
+.text-size button {
+  padding: 2px 10px;
+  font-weight: bold;
 }
 
-.button {
-    display: block;
-    margin-top: 25px;
-    padding: 15px;
-    background-color: var(--button-color);
-    color: var(--button-text-color);
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-}
-.button:hover {
-    background-color: var(--button-hover-color);
-}
-.info-page {
-    display: flex;
-    justify-content: center;
-    padding: 70px 20px;
+.text-size button[data-text-scale="1"] {
+  font-size: 13px;
 }
 
-.info-box {
-    width: 600px;
-    padding: 45px;
-    background-color: var(--card-color);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px var(--shadow-color);
-    text-align: center;
+.text-size button[data-text-scale="1.25"] {
+  font-size: 17px;
 }
 
-.info-icon {
-    font-size: 60px;
+.text-size button[data-text-scale="1.5"] {
+  font-size: 21px;
 }
 
-.info-box h1 {
-    color: var(--main-text-color);
-    margin-bottom: 25px;
+.text-size button[aria-pressed="true"] {
+  outline: 3px solid white;
+  outline-offset: -3px;
 }
 
-.info-box p {
-    color: var(--secondary-text-color);
-    font-size: 18px;
-    line-height: 1.6;
+.device-frame--laptop {
+  width: calc(1414px * var(--laptop-scale));
+  height: calc(904px * var(--laptop-scale));
 }
 
-.notice {
-    margin: 30px 0;
-    padding: 18px;
-    background-color: #eaf3ff;
-    border-left: 5px solid var(--button-color);
-    border-radius: 6px;
-    text-align: left;
+.device-frame--phone {
+  width: calc(392px * var(--phone-scale));
+  height: calc(760px * var(--phone-scale) + 48px);
 }
 
-.info-box .button {
-    margin-top: 25px;
+.phone-dock {
+  position: fixed;
+  right: 28px;
+  bottom: 0;
+  z-index: 20;
+  width: calc(392px * var(--phone-scale));
+  transform: translateY(calc(100% - 52px));
+  transition: transform .35s ease;
 }
 
-.back-link {
-    display: block;
-    margin-top: 25px;
-    color: var(--button-color);
-    text-decoration: none;
+.phone-dock.up {
+  transform: translateY(0);
 }
 
-.back-link:hover {
-    text-decoration: underline;
+.phone-toggle {
+  min-height: 52px;
+  white-space: normal;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-dock {
+    transition: none;
+  }
+}
+
+/*
+* From https://www.w3schools.com/HOWTO/howto_css_devices.asp
+*/
+
+/* The device with borders */
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: 0;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(var(--phone-scale));
+  transform: scale(var(--phone-scale));
+}
+
+/* The horizontal line on the top of the device */
+.smartphone:before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 5px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 10px;
+}
+
+/* The circle on the bottom of the device */
+.smartphone:after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 50%;
+}
+
+/* The screen (or content) of the device */
+.smartphone .content {
+  width: 360px;
+  height: 640px;
+  background: white;
+}
+
+/* The laptop with borders */
+.laptop {
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(var(--laptop-scale));
+  transform: scale(var(--laptop-scale));
+  position: relative;
+  width: 1366px;
+  height: 800px;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: black;
+  border-width: 24px 24px 80px;
+  background-color: black;
+}
+
+/* The screen (or content) of the device */
+.laptop .content {
+  width: 1366px;
+  height: 800px;
+  overflow: hidden;
+  border: none;
+  background-color: white;
+}
+
+/*
+* End of code from https://www.w3schools.com/HOWTO/howto_css_devices.asp
+*/
