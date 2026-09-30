@@ -27,7 +27,13 @@ function updateProgress() {
 	$("hero-sub").textContent = `Scenario ${n} of ${Scenarios.length}; read the request carefully.`;
 	$("step-bars").title = `Score ${correct} / ${results.length}`;
 	$("step-bars").querySelectorAll(".step-bar").forEach((bar, k) => {
+		const done = results[k];
 		bar.classList.toggle("on", k < results.length);
+		bar.classList.toggle("right", Boolean(done) && done.correct);
+		bar.classList.toggle("wrong", Boolean(done) && !done.correct);
+		bar.title = done
+			? `Scenario ${k + 1}: ${done.correct ? "correct" : "wrong"}`
+			: `Scenario ${k + 1}: not answered yet`;
 	});
 }
 

@@ -115,6 +115,14 @@ body {
   background-color: #000;
 }
 
+.step-bar.right {
+  background-color: #1e8e3e;
+}
+
+.step-bar.wrong {
+  background-color: #c0392b;
+}
+
 .step-label {
   margin-left: 10px;
 }
