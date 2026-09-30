@@ -18,7 +18,7 @@ const hideAll = (...ids) => ids.forEach(hide);
 function updateProgress() {
 	const n = Math.min(i + 1, Scenarios.length);
 	const correct = results.filter(r => r.correct).length;
-	$("sub").textContent = `Scenario ${n} of ${Scenarios.length} - Read the request carefully.`;
+	$("hero-sub").textContent = `Scenario ${n} of ${Scenarios.length} - Read the request carefully.`;
 	$("fill").style.width = `${(results.length / Scenarios.length) * 100}%`;
 	$("fill").title = `Score ${correct} / ${results.length}`;
 }
@@ -133,7 +133,7 @@ function showSummary() {
 	hide("stage");
 	hide("feedback");
 
-	$("sub").textContent = "Here's how you did.";
+	$("hero-sub").textContent = "Here's how you did.";
 
 	const correct = results.filter(r => r.correct).length;
 	$("score").textContent = `${correct} / ${Scenarios.length}`;
