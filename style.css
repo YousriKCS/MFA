@@ -586,6 +586,19 @@ body {
   font-size: calc(15px * var(--text-scale));
 }
 
+.w3-bar.w3-black {
+  display: flex;
+  align-items: center;
+}
+
+.w3-bar.w3-black .w3-bar-item:first-child {
+  font-size: calc(20px * var(--text-scale));
+}
+
+.w3-bar.w3-black .text-size {
+  margin-left: auto;
+}
+
 .text-size {
   padding: 0;
 }
