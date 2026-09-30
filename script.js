@@ -15,12 +15,20 @@ const show = id => $(id).classList.remove("hidden");
 const hide = id => $(id).classList.add("hidden");
 const hideAll = (...ids) => ids.forEach(hide);
 
+Scenarios.forEach(() => {
+	const bar = document.createElement("span");
+	bar.className = "step-bar";
+	$("step-bars").appendChild(bar);
+});
+
 function updateProgress() {
 	const n = Math.min(i + 1, Scenarios.length);
 	const correct = results.filter(r => r.correct).length;
-	$("hero-sub").textContent = `Scenario ${n} of ${Scenarios.length} - Read the request carefully.`;
-	$("fill").style.width = `${(results.length / Scenarios.length) * 100}%`;
-	$("fill").title = `Score ${correct} / ${results.length}`;
+	$("hero-sub").textContent = `Scenario ${n} of ${Scenarios.length}; read the request carefully.`;
+	$("step-bars").title = `Score ${correct} / ${results.length}`;
+	$("step-bars").querySelectorAll(".step-bar").forEach((bar, k) => {
+		bar.classList.toggle("on", k < results.length);
+	});
 }
 
 function setFeedback(html, cls = "") {
