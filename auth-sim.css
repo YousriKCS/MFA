@@ -92,11 +92,8 @@ body {
 }
 
 .steps {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 auto 24px;
   max-width: 820px;
+  margin: 0 auto 32px;
   padding: 0 16px;
 }
 
@@ -106,9 +103,9 @@ body {
 }
 
 .step-bar {
-  width: 30px;
-  height: 5px;
-  background-color: #c2c7d0;
+  flex: 1;
+  height: 10px;
+  background-color: #dfe3ea;
 }
 
 .step-bar.on {
@@ -121,10 +118,6 @@ body {
 
 .step-bar.wrong {
   background-color: #c0392b;
-}
-
-.step-label {
-  margin-left: 10px;
 }
 
 .stage {
