@@ -18,8 +18,18 @@ the only reason you got in.
 You are the person holding the phone. Seven requests arrive. Beside each one the
 page shows what you are actually doing at that moment — where you are, what
 device is in your hands, whether you started a sign-in at all — and you decide
-yes or no. The requests are built so that location alone never answers the
-question.
+yes or no.
+
+The seven are drawn fresh on every run, so practising again is not a memory
+test. `script.js` holds eight case types, each with its own written
+explanation: the sign-in you started, the request that matches your city and
+device perfectly but that you did not start, the foreign city that is
+genuinely you on holiday, the barrage at three in the morning, and so on. A run
+picks a person, a home city, their devices, and then fills the case types in
+with those details. The mix is fixed even though the content is not: three
+yes, four no, the easy one first, always at least two refusals coming from the
+user's own city, always one fatigue barrage. That last constraint is the point
+— location alone never answers the question, in any run.
 
 ## Accessibility
 
