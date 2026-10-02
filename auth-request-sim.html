@@ -13,13 +13,22 @@
   <span class="w3-bar-item w3-wide"><b>AUTHENTICATION REQUEST SIMULATOR</b></span>
 
   <div class="w3-bar-item w3-right text-size">
-    <span>Text size</span>
+    <span class="text-size-label">Text size</span>
     <button type="button" class="w3-button w3-white" data-text-scale="1"
-            aria-pressed="true" aria-label="Normal text">A</button>
+            aria-pressed="true" aria-label="Normal text size">
+      <span class="text-size-letter" aria-hidden="true">A</span>
+      <span class="text-size-name">Normal</span>
+    </button>
     <button type="button" class="w3-button w3-white" data-text-scale="1.25"
-            aria-pressed="false" aria-label="Large text">A</button>
+            aria-pressed="false" aria-label="Larger text size">
+      <span class="text-size-letter" aria-hidden="true">A</span>
+      <span class="text-size-name">Larger</span>
+    </button>
     <button type="button" class="w3-button w3-white" data-text-scale="1.5"
-            aria-pressed="false" aria-label="Extra large text">A</button>
+            aria-pressed="false" aria-label="Largest text size">
+      <span class="text-size-letter" aria-hidden="true">A</span>
+      <span class="text-size-name">Largest</span>
+    </button>
   </div>
 </div>
 
@@ -33,59 +42,85 @@
 </div>
 
 <div class="stage" id="stage">
-  <!-- Attacker Phone -->
-  <div class="phone-wrap">
-    <p class="label w3-wide"><b>ATTACKER'S DEVICE</b></p>
-    <div class="phone-frame">
-      <div class="phone attacker">
-      <div class="screen">
-        <div id="p1Login" class="pane">
-          <h3>Sign in</h3>
-          <input id="username" readonly placeholder="Username">
-          <input id="password" readonly placeholder="Password">
-          <button class="btn red" id="loginBtn" onclick="startLogin()">Sign in</button>
+  <section class="context" aria-labelledby="context-title">
+    <h2 class="panel-title">What you are doing right now</h2>
+    <div class="context-card">
+      <p class="context-activity" id="cActivity">&mdash;</p>
+      <dl class="detail-list">
+        <div class="detail-row">
+          <dt>Place you are in</dt>
+          <dd id="cLoc">&mdash;</dd>
         </div>
-        <div id="p1Sending" class="pane hidden"><p>Sending request…</p></div>
-        <div id="p1Sent" class="pane hidden"><p>Waiting for approval…</p></div>
-        <div id="p1Approved" class="pane hidden"><h3 class="green">Access Granted</h3></div>
-        <div id="p1Denied" class="pane hidden"><h3 class="red">Access Denied</h3></div>
-      </div>
-      </div>
+        <div class="detail-row">
+          <dt>Device in your hands</dt>
+          <dd id="cDev">&mdash;</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Browser you use</dt>
+          <dd id="cBrowser">&mdash;</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Time where you are</dt>
+          <dd id="cTime">&mdash;</dd>
+        </div>
+      </dl>
     </div>
-  </div>
+  </section>
 
-  <!-- Victim Phone -->
-  <div class="phone-wrap">
-    <p class="label w3-wide"><b>VICTIM'S PHONE</b></p>
+  <section class="phone-wrap">
+    <h2 class="panel-title">Your phone</h2>
     <div class="phone-frame">
-      <div class="phone victim">
-      <div class="screen">
-        <div id="p2Idle" class="pane"><p>Locked</p></div>
-        <div id="p2Notif" class="pane hidden">
-          <div class="notif">
-            <div class="notif-head">Security Alert</div>
-            <h4>Approve sign-in?</h4>
-            <p><b>Account:</b> <span id="nUser">—</span></p>
-            <p><b>Location:</b> <span id="nLoc">—</span><span id="nTag"></span></p>
-            <p><b>IP:</b> <span id="nIP">—</span></p>
-            <p><b>Time:</b> <span id="nTime">—</span></p>
-            <p><b>Device:</b> <span id="nDev">—</span></p>
-            <p><b>Browser:</b> <span id="nBrowser">—</span></p>
-            <div class="row">
-              <button class="btn deny" onclick="answer(false)">Deny</button>
-              <button class="btn green" onclick="answer(true)">Approve</button>
+      <div class="phone">
+        <div class="screen">
+          <div id="pIdle" class="pane">
+            <p class="icon" aria-hidden="true">&#128274;</p>
+            <p>Your phone is locked.</p>
+          </div>
+
+          <div id="pNotif" class="pane hidden">
+            <div class="notif">
+              <div class="notif-head">Approve this sign-in?</div>
+              <dl class="detail-list">
+                <div class="detail-row">
+                  <dt>Account</dt>
+                  <dd id="nUser">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Place</dt>
+                  <dd id="nLoc">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Device</dt>
+                  <dd id="nDev">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Browser</dt>
+                  <dd id="nBrowser">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Time</dt>
+                  <dd id="nTime">&mdash;</dd>
+                </div>
+              </dl>
+              <div class="row">
+                <button class="btn deny" onclick="answer(false)">No, not me</button>
+                <button class="btn green" onclick="answer(true)">Yes, it is me</button>
+              </div>
             </div>
           </div>
+
+          <div id="pResult" class="pane hidden">
+            <p class="icon" id="rIcon" aria-hidden="true"></p>
+            <h3 id="rTitle"></h3>
+            <p id="rText"></p>
+          </div>
         </div>
-        <div id="p2Approved" class="pane hidden"><h3 class="green">Approved</h3></div>
-        <div id="p2Denied" class="pane hidden"><h3 class="red">Denied</h3></div>
-      </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
-<div class="feedback" id="feedback">Tap <b>Sign in</b> on the attacker's phone to begin.</div>
+<div class="feedback" id="feedback">Read what you are doing, then wait for the request.</div>
 
 <div class="summary hidden" id="summary">
   <h2>Training complete</h2>
