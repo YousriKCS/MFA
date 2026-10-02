@@ -1,33 +1,6 @@
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url(montserrat-latin.woff2) format("woff2");
-}
-
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
-}
-
 .laptop,
 .smartphone {
   box-sizing: content-box;
-}
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 50;
-  padding: 12px 20px;
-  background: #fff;
-  color: var(--accent-dark);
-  font-weight: 700;
-}
-
-.skip-link:focus {
-  left: 0;
 }
 
 .picker-label {
@@ -41,52 +14,6 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .mfa-picker button[aria-pressed="true"]::before {
   content: "\2713\00a0";
-  font-weight: 700;
-}
-
-.sim-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-}
-
-.sim-card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 280px;
-  border-top: 6px solid var(--accent);
-}
-
-.sim-card:nth-child(2) {
-  border-top-color: var(--good);
-}
-
-.sim-card h3 {
-  margin-top: 0;
-}
-
-.sim-card .w3-button {
-  margin-top: auto;
-}
-
-.sim-icon {
-  margin: 0 0 16px;
-  font-size: 56px;
-  line-height: 1;
-  text-align: center;
-}
-
-.tutorial-steps {
-  padding-left: 20px;
-}
-
-.tutorial-steps li {
-  margin-bottom: 12px;
-}
-
-.tutorial-steps li::marker {
-  color: var(--accent);
   font-weight: 700;
 }
 
@@ -210,16 +137,6 @@ body, h1, h2, h3, h4, h5, h6 {
   font-size: .786em;
   text-align: center;
   color: #0a4d8c;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-:focus-visible {
-  outline: 3px solid var(--accent-dark);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px #fff;
 }
 
 .laptop :focus-visible {
@@ -606,113 +523,19 @@ body, h1, h2, h3, h4, h5, h6 {
 :root {
   --laptop-scale: .8;
   --phone-scale: min(calc(.8 * var(--text-scale)), calc((100vw - 56px) / 392), calc((100vh - 110px) / 808));
-  --text-scale: 1;
-  --ink: #15233a;
-  --accent: #0a4d8c;
-  --accent-dark: #07355f;
-  --good: #19742f;
-  --bad: #c0392b;
-  --page: #eaf0f7;
-}
-
-body {
-  font-size: calc(15px * var(--text-scale));
-  color: var(--ink);
 }
 
 body:has(.phone-dock) {
   padding-bottom: 64px;
 }
 
-body.w3-light-grey {
-  background-color: var(--page) !important;
-}
-
-.w3-leftbar.w3-border-black {
-  border-left-color: var(--accent) !important;
-}
-
-.w3-button.w3-black {
-  background-color: var(--accent) !important;
-}
-
-.w3-button.w3-black:hover {
-  background-color: var(--accent-dark) !important;
-}
-
-h2, h3 {
-  color: var(--accent-dark);
-}
-
-.w3-content h2 {
-  font-size: calc(30px * var(--text-scale));
-}
-
-.w3-content h3,
 .outcome h3 {
   font-size: calc(24px * var(--text-scale));
-}
-
-.outcome h3 {
   color: inherit;
 }
 
-.w3-content .w3-button,
 .outcome .w3-button {
   font-size: calc(15px * var(--text-scale));
-}
-
-.w3-bar.w3-black {
-  background-color: var(--accent-dark) !important;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.w3-bar.w3-black .w3-bar-item:first-child {
-  font-size: calc(20px * var(--text-scale));
-}
-
-.w3-bar .text-size {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 10px;
-}
-
-.text-size-label {
-  font-weight: 700;
-}
-
-.text-size button {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  padding: 10px 14px;
-  font-weight: 700;
-  border-radius: 6px;
-}
-
-.text-size-name {
-  font-size: 13px;
-}
-
-.text-size button[data-text-scale="1"] .text-size-letter {
-  font-size: 14px;
-}
-
-.text-size button[data-text-scale="1.25"] .text-size-letter {
-  font-size: 18px;
-}
-
-.text-size button[data-text-scale="1.5"] .text-size-letter {
-  font-size: 22px;
-}
-
-.text-size button[aria-pressed="true"] {
-  outline: 3px solid #ffcf33;
-  outline-offset: -3px;
 }
 
 .device-frame--laptop {

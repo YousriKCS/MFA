@@ -29,6 +29,14 @@ the whole interface, including the device mockups, and remembers the choice in
 have a skip link, a single `h1`, landmark elements, and live regions so that
 decisions and results are announced. Colours are checked against WCAG AA.
 
+The control is built by `accessibility.js` into whatever element carries
+`data-text-size`, so its markup, labels and default live in one place rather
+than being copied into each page.
+
+`base.css` holds everything shared. The two simulators keep separate
+stylesheets because they define some of the same class names (`.stage`,
+`.phone`, `.step-bar`) with different meanings, and no page loads both.
+
 ## Files
 
 | File | What it is |
@@ -37,9 +45,10 @@ decisions and results are announced. Colours are checked against WCAG AA.
 | `attack-info.html`, `mfa-info.html` | Briefing pages |
 | `attack-simulator.html`, `index.js` | Attack Simulator |
 | `auth-request-sim.html`, `script.js` | Authentication Request Simulator |
-| `style.css` | Everything except the request simulator |
-| `auth-sim.css` | The request simulator |
-| `accessibility.js` | Text-size control, shared by every page |
+| `base.css` | Tokens, page chrome, header bar; loaded by every page |
+| `attack-sim.css` | Attack Simulator only |
+| `auth-sim.css` | Request Simulator only |
+| `accessibility.js` | Text-size control; renders itself into every page's header |
 | `w3.css` | W3.CSS, vendored |
 | `montserrat-latin.woff2` | Montserrat, SIL Open Font License |
 

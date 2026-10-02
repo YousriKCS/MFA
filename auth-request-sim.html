@@ -4,39 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Authentication Request Simulator</title>
+<meta name="description" content="Practise telling a sign-in request you started from one an attacker sent to your phone.">
 <link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="auth-sim.css">
-<script>
-try {
-  var saved = localStorage.getItem("mfa-text-scale");
-  if (saved) document.documentElement.style.setProperty("--text-scale", saved);
-} catch (e) {}
-</script>
+<script src="accessibility.js"></script>
 </head>
 <body>
 
-<div class="w3-bar w3-black w3-card">
+<header class="w3-bar w3-black w3-card">
   <span class="w3-bar-item w3-wide"><b>AUTHENTICATION REQUEST SIMULATOR</b></span>
 
-  <div class="w3-bar-item w3-right text-size">
-    <span class="text-size-label">Text size</span>
-    <button type="button" class="w3-button w3-white" data-text-scale="1"
-            aria-pressed="true" aria-label="Normal text size">
-      <span class="text-size-letter" aria-hidden="true">A</span>
-      <span class="text-size-name">Normal</span>
-    </button>
-    <button type="button" class="w3-button w3-white" data-text-scale="1.25"
-            aria-pressed="false" aria-label="Larger text size">
-      <span class="text-size-letter" aria-hidden="true">A</span>
-      <span class="text-size-name">Larger</span>
-    </button>
-    <button type="button" class="w3-button w3-white" data-text-scale="1.5"
-            aria-pressed="false" aria-label="Largest text size">
-      <span class="text-size-letter" aria-hidden="true">A</span>
-      <span class="text-size-name">Largest</span>
-    </button>
-  </div>
-</div>
+  <div class="w3-bar-item w3-right text-size" data-text-size></div>
+</header>
 
 <a class="skip-link" href="#main">Skip to the training</a>
 
@@ -169,7 +149,6 @@ try {
   <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>
 </p>
 
-<script src="accessibility.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
