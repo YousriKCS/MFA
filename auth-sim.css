@@ -132,8 +132,7 @@ body {
 .phone-wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .phone {
@@ -148,7 +147,7 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: calc(16px * var(--text-scale));
   transform: scale(var(--phone-scale));
-  transform-origin: top center;
+  transform-origin: 0 0;
 }
 
 .phone .screen {
@@ -221,11 +220,15 @@ body {
 
 .notif .row {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 14px;
 }
 
-.notif .row .btn { flex: 1; }
+.notif .row .btn {
+  flex: 1 1 auto;
+  padding: 12px 10px;
+}
 
 .unknown {
   color: #a3341f;
@@ -245,11 +248,12 @@ body {
 
 .label {
   margin: 0;
-  font-weight: 700;
-  font-size: calc(14px * var(--text-scale));
 }
-.label.red   { color: #c0392b; }
-.label.green { color: #1e8e3e; }
+
+.phone-frame {
+  width: calc(320px * var(--phone-scale));
+  height: calc(640px * var(--phone-scale));
+}
 
 .green { color: #1e8e3e; }
 .red   { color: #c0392b; }
