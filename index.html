@@ -7,9 +7,18 @@
     <title>MFA Safety Training</title>
     <link rel="stylesheet" href="w3.css">
     <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Two hands-on simulators that show how multi-factor authentication stops someone who already has your password.">
+    <script>
+      try {
+        var saved = localStorage.getItem("mfa-text-scale");
+        if (saved) document.documentElement.style.setProperty("--text-scale", saved);
+      } catch (e) {}
+    </script>
   </head>
   <body class="w3-light-grey">
-    <div class="w3-bar w3-black w3-card">
+    <a class="skip-link" href="#main">Skip to the simulators</a>
+
+    <header class="w3-bar w3-black w3-card">
       <span class="w3-bar-item w3-wide"><b>MFA SAFETY TRAINING</b></span>
 
       <div class="w3-bar-item w3-right text-size">
@@ -30,10 +39,10 @@
           <span class="text-size-name">Largest</span>
         </button>
       </div>
-    </div>
+    </header>
 
-    <div class="w3-content w3-container w3-padding-32" style="max-width:820px">
-      <h2><b>Learn how MFA protects you</b></h2>
+    <main id="main" class="w3-content w3-container w3-padding-32" style="max-width:820px">
+      <h1><b>Learn how MFA protects you</b></h1>
 
       <p>
         MFA is the extra check your bank sends to your phone after your password. It is why
@@ -50,7 +59,7 @@
           <p>See how MFA stops an attacker who already has the password.</p>
 
           <a class="w3-button w3-black w3-block" href="attack-info.html">
-            Start simulation
+            Start the Attack Simulator
           </a>
         </div>
 
@@ -61,11 +70,12 @@
           <p>Practise responding to unexpected login requests.</p>
 
           <a class="w3-button w3-black w3-block" href="mfa-info.html">
-            Start simulation
+            Start the Request Simulator
           </a>
         </div>
       </div>
-    </div>
+
+    </main>
 
     <script src="accessibility.js"></script>
   </body>

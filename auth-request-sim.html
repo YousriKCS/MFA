@@ -6,6 +6,12 @@
 <title>Authentication Request Simulator</title>
 <link rel="stylesheet" href="w3.css">
 <link rel="stylesheet" href="auth-sim.css">
+<script>
+try {
+  var saved = localStorage.getItem("mfa-text-scale");
+  if (saved) document.documentElement.style.setProperty("--text-scale", saved);
+} catch (e) {}
+</script>
 </head>
 <body>
 
@@ -32,17 +38,25 @@
   </div>
 </div>
 
+<a class="skip-link" href="#main">Skip to the training</a>
+
+<main id="main">
+
 <div class="hero">
-  <h1>Learn how MFA protects you</h1>
+  <h1>Is this sign-in really yours?</h1>
   <p id="hero-sub">Read the request carefully.</p>
 </div>
 
+<p class="rule">
+  <b>The rule:</b> say yes only to a sign-in you started yourself, seconds ago.
+</p>
+
 <div class="steps">
-  <span class="step-bars" id="step-bars"></span>
+  <span class="step-bars" id="step-bars" role="img" aria-label="No requests answered yet"></span>
 </div>
 
 <div class="stage" id="stage">
-  <section class="context" aria-labelledby="context-title">
+  <section class="context">
     <h2 class="panel-title">What you are doing right now</h2>
     <div class="context-card">
       <p class="context-activity" id="cActivity">&mdash;</p>
@@ -79,7 +93,8 @@
 
           <div id="pNotif" class="pane hidden">
             <div class="notif">
-              <div class="notif-head">Approve this sign-in?</div>
+              <h3 class="notif-head" id="notifTitle" tabindex="-1">Approve this sign-in?</h3>
+              <p class="notif-warning hidden" id="nRepeat"></p>
               <dl class="detail-list">
                 <div class="detail-row">
                   <dt>Account</dt>
@@ -103,15 +118,15 @@
                 </div>
               </dl>
               <div class="row">
-                <button class="btn deny" onclick="answer(false)">No, not me</button>
-                <button class="btn green" onclick="answer(true)">Yes, it is me</button>
+                <button type="button" class="btn deny" id="denyBtn">No, not me</button>
+                <button type="button" class="btn green" id="approveBtn">Yes, it is me</button>
               </div>
             </div>
           </div>
 
           <div id="pResult" class="pane hidden">
             <p class="icon" id="rIcon" aria-hidden="true"></p>
-            <h3 id="rTitle"></h3>
+            <h3 id="rTitle" tabindex="-1"></h3>
             <p id="rText"></p>
           </div>
         </div>
@@ -120,15 +135,35 @@
   </section>
 </div>
 
-<div class="feedback" id="feedback">Read what you are doing, then wait for the request.</div>
+<div class="feedback" id="feedback" role="status" aria-live="polite">Read what you are doing, then wait for the request.</div>
+
+<p class="next-wrap">
+  <button type="button" class="btn blue hidden" id="nextBtn">Next request</button>
+</p>
 
 <div class="summary hidden" id="summary">
-  <h2>Training complete</h2>
-  <div class="score" id="score">0 / 6</div>
+  <h2 id="summaryTitle" tabindex="-1">Training complete</h2>
+  <div class="score" id="score">0 / 7</div>
   <div class="verdict" id="verdict">—</div>
   <ul id="list"></ul>
-  <button class="btn blue" onclick="restart()">Restart training</button>
+
+  <div class="takeaway">
+    <h3>What to do in real life</h3>
+    <ul>
+      <li>Say yes only to a sign-in you started yourself, seconds ago.</li>
+      <li>Your own city and your own kind of device prove nothing. If you did not start it, it is not yours.</li>
+      <li>If requests keep arriving, say no every time and change your password straight away. Somebody already has the old one.</li>
+      <li>Nobody who telephones you needs your code. Not your bank, not the police, not support.</li>
+    </ul>
+  </div>
+
+  <p class="summary-actions">
+    <button type="button" class="btn blue" id="restartBtn">Practise again</button>
+    <a class="w3-button w3-white w3-border" href="attack-info.html">Try the Attack Simulator</a>
+  </p>
 </div>
+
+</main>
 
 <p class="w3-center">
   <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>

@@ -15,6 +15,35 @@ body, h1, h2, h3, h4, h5, h6 {
   box-sizing: content-box;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 50;
+  padding: 12px 20px;
+  background: #fff;
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.picker-label {
+  margin: 24px 0 0;
+  font-size: calc(20px * var(--text-scale));
+}
+
+.mfa-picker button[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 3px var(--accent-dark);
+}
+
+.mfa-picker button[aria-pressed="true"]::before {
+  content: "\2713\00a0";
+  font-weight: 700;
+}
+
 .sim-cards {
   display: flex;
   gap: 20px;
@@ -132,7 +161,8 @@ body, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
 }
 
-.login-card h1 {
+.login-card h1,
+.login-card h2 {
   margin: 0 0 28px;
   font-family: inherit;
   font-size: 1.429em;
@@ -187,8 +217,9 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 :focus-visible {
-  outline: 3px solid #0a4d8c;
+  outline: 3px solid var(--accent-dark);
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 .laptop :focus-visible {
@@ -574,12 +605,12 @@ body, h1, h2, h3, h4, h5, h6 {
 
 :root {
   --laptop-scale: .8;
-  --phone-scale: calc(.8 * min(var(--text-scale), 1.25));
+  --phone-scale: min(calc(.8 * var(--text-scale)), calc((100vw - 56px) / 392), calc((100vh - 110px) / 808));
   --text-scale: 1;
   --ink: #15233a;
   --accent: #0a4d8c;
   --accent-dark: #07355f;
-  --good: #1e8e3e;
+  --good: #19742f;
   --bad: #c0392b;
   --page: #eaf0f7;
 }
@@ -587,6 +618,10 @@ body, h1, h2, h3, h4, h5, h6 {
 body {
   font-size: calc(15px * var(--text-scale));
   color: var(--ink);
+}
+
+body:has(.phone-dock) {
+  padding-bottom: 64px;
 }
 
 body.w3-light-grey {
@@ -654,7 +689,7 @@ h2, h3 {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 10px 14px;
   font-weight: 700;
   border-radius: 6px;
 }

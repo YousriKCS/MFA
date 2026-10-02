@@ -30,6 +30,14 @@ const Scenarios = [
 		why: "Same city as you, but the device and the browser are not yours, and you started nothing."
 	},
 	{
+		activity: "You went to bed an hour ago. Your phone has been buzzing all night.",
+		you: { loc: "Jonkoping, Sweden", dev: "Windows 10 desktop", browser: "Edge", time: "03:12" },
+		request: { loc: "Jonkoping, Sweden", dev: "Windows 10 desktop", browser: "Edge", time: "03:12" },
+		repeat: "This is the 6th request in 4 minutes.",
+		answer: "deny",
+		why: "This is the trick that works most often. Somebody has your password and is sending request after request, hoping you tap yes just to make the buzzing stop. Say no every time, then change your password."
+	},
+	{
 		activity: "You are signing in to your email on your work computer.",
 		you: { loc: "Jonkoping, Sweden", dev: "Windows 10 desktop", browser: "Edge", time: "09:30" },
 		request: { loc: "Jonkoping, Sweden", dev: "Linux computer", browser: "Tor Browser", time: "03:14" },
@@ -92,22 +100,26 @@ Scenarios.forEach(() => {
 function updateProgress() {
 	const n = Math.min(i + 1, Scenarios.length);
 	const correct = results.filter(r => r.correct).length;
+
 	$("hero-sub").textContent = `Request ${n} of ${Scenarios.length}; compare it with what you are doing.`;
-	$("step-bars").title = `Score ${correct} / ${results.length}`;
+	$("step-bars").setAttribute(
+		"aria-label",
+		results.length
+			? `Progress: ${results.length} of ${Scenarios.length} answered, ${correct} correct`
+			: "No requests answered yet"
+	);
+
 	$("step-bars").querySelectorAll(".step-bar").forEach((bar, k) => {
 		const done = results[k];
 		bar.classList.toggle("on", k < results.length);
 		bar.classList.toggle("right", Boolean(done) && done.correct);
 		bar.classList.toggle("wrong", Boolean(done) && !done.correct);
-		bar.title = done
-			? `Request ${k + 1}: ${done.correct ? "correct" : "wrong"}`
-			: `Request ${k + 1}: not answered yet`;
 	});
 }
 
-function setFeedback(html, cls = "") {
+function setFeedback(text, cls = "") {
 	$("feedback").className = "feedback " + cls;
-	$("feedback").innerHTML = html;
+	$("feedback").textContent = text;
 }
 
 function loadScenario() {
@@ -115,7 +127,7 @@ function loadScenario() {
 	round++;
 	const token = round;
 
-	hideAll("pNotif", "pResult");
+	hideAll("pNotif", "pResult", "nextBtn");
 	show("pIdle");
 
 	$("cActivity").textContent = s.activity;
@@ -141,9 +153,17 @@ function deliverRequest() {
 	$("nBrowser").textContent = s.request.browser;
 	$("nTime").textContent = s.request.time;
 
+	if (s.repeat) {
+		$("nRepeat").textContent = s.repeat;
+		show("nRepeat");
+	} else {
+		hide("nRepeat");
+	}
+
 	hide("pIdle");
 	show("pNotif");
 	setFeedback("A request has arrived. Read every line, then answer on your phone.");
+	$("notifTitle").focus();
 }
 
 function answer(approve) {
@@ -151,6 +171,7 @@ function answer(approve) {
 	const chosen = approve ? "approve" : "deny";
 	const correct = chosen === s.answer;
 	const outcome = Outcomes[`${chosen}-${s.answer}`];
+	const last = i === Scenarios.length - 1;
 
 	results.push({ s, chosen, correct });
 
@@ -161,13 +182,11 @@ function answer(approve) {
 	$("rText").textContent = outcome.text;
 	show("pResult");
 
-	const last = i === Scenarios.length - 1;
+	setFeedback(`${correct ? "Correct." : "Not quite."} ${s.why}`, correct ? "correct" : "wrong");
 
-	setFeedback(
-		`<b>${correct ? "Correct." : "Not quite."}</b> ${s.why}
-		 <a href="#" onclick="next();return false;">${last ? "See summary &rarr;" : "Next request &rarr;"}</a>`,
-		correct ? "correct" : "wrong"
-	);
+	$("nextBtn").textContent = last ? "See how you did" : "Next request";
+	show("nextBtn");
+	$("nextBtn").focus();
 
 	updateProgress();
 }
@@ -180,8 +199,7 @@ function next() {
 
 function showSummary() {
 	round++;
-	hide("stage");
-	hide("feedback");
+	hideAll("stage", "feedback", "nextBtn");
 
 	$("hero-sub").textContent = "Here's how you did.";
 
@@ -198,12 +216,12 @@ function showSummary() {
 		v.textContent = "Good, a couple of requests took you off guard";
 	} else {
 		v.className = "verdict poor";
-		v.textContent = "Needs practice, review the explanations";
+		v.textContent = "Needs practice, read the explanations below";
 	}
 
 	$("list").innerHTML = results.map((r, k) => `
 		<li>
-			<span class="mark ${r.correct ? "right" : "wrong"}">${r.correct ? "✓" : "✕"}</span>
+			<span class="mark ${r.correct ? "right" : "wrong"}" aria-hidden="true">${r.correct ? "✓" : "✕"}</span>
 			<div>
 				<b>Request ${k + 1} &mdash; ${r.s.request.loc}</b><br>
 				You answered <b>${Words[r.chosen]}</b>. Correct answer: <b>${Words[r.s.answer]}</b>.<br>
@@ -212,6 +230,7 @@ function showSummary() {
 		</li>`).join("");
 
 	show("summary");
+	$("summaryTitle").focus();
 }
 
 function restart() {
@@ -222,5 +241,10 @@ function restart() {
 	show("feedback");
 	loadScenario();
 }
+
+$("approveBtn").addEventListener("click", () => answer(true));
+$("denyBtn").addEventListener("click", () => answer(false));
+$("nextBtn").addEventListener("click", next);
+$("restartBtn").addEventListener("click", restart);
 
 loadScenario();

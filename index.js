@@ -168,6 +168,7 @@ const outcome = document.getElementById('outcome');
 const outcomeTitle = document.getElementById('outcome-title');
 const outcomeText = document.getElementById('outcome-text');
 const outcomeLesson = document.getElementById('outcome-lesson');
+const phoneFrame = phoneDock.querySelector('.device-frame--phone');
 
 let selectedMfa = 'text';
 let sentCode = null;
@@ -286,10 +287,16 @@ function stopTotp() {
   totpTimer = null;
 }
 
+function lockPhoneDecisions(locked) {
+  phoneDock.querySelectorAll('.push-actions button, .number-choices button')
+    .forEach((button) => { button.disabled = locked; });
+}
+
 function finish(key) {
   const result = OUTCOMES[selectedMfa][key];
 
   stopTotp();
+  lockPhoneDecisions(true);
 
   resultTitle.textContent = result.resultTitle;
   resultText.textContent = result.resultText;
@@ -303,6 +310,7 @@ function finish(key) {
   accountCard.hidden = !result.breached;
   outcome.hidden = false;
   setStep(3);
+  outcomeTitle.focus();
 }
 
 function reset() {
@@ -337,6 +345,7 @@ function reset() {
   phoneApp.hidden = true;
   phonePush.hidden = true;
   phoneIdle.hidden = false;
+  lockPhoneDecisions(false);
   setPhoneDock(false);
   setStep(1);
 }
@@ -353,7 +362,8 @@ window.addEventListener('resize', fitLaptop);
 function setPhoneDock(up) {
   phoneDock.classList.toggle('up', up);
   phoneToggle.setAttribute('aria-expanded', String(up));
-  phoneToggle.innerHTML = up ? '<b>Put the phone down</b>' : "<b>Look at John's phone</b>";
+  phoneToggle.textContent = up ? 'Put the phone down' : "Look at John's phone";
+  phoneFrame.inert = !up;
 }
 
 phoneToggle.addEventListener('click', () => {
@@ -376,6 +386,7 @@ picker.addEventListener('click', (event) => {
     const chosen = other === button;
     other.classList.toggle('w3-black', chosen);
     other.classList.toggle('w3-white', !chosen);
+    other.setAttribute('aria-pressed', String(chosen));
   });
 
   reset();
@@ -397,6 +408,7 @@ loginForm.addEventListener('submit', (event) => {
   loginForm.hidden = true;
   phoneIdle.hidden = true;
   setStep(2);
+  phoneToggle.focus();
 
   if (selectedMfa === 'popup' || selectedMfa === 'match') {
     startPush();
@@ -469,12 +481,22 @@ document.getElementById('send-again').addEventListener('click', () => {
 });
 
 document.getElementById('push-allow').addEventListener('click', () => {
-  finish(pushRequests >= 3 ? 'fatigued' : 'approved');
+  const fatigued = pushRequests >= 3 && OUTCOMES[selectedMfa].fatigued;
+  finish(fatigued ? 'fatigued' : 'approved');
 });
 
 document.getElementById('push-deny').addEventListener('click', () => finish('denied'));
 document.getElementById('match-deny').addEventListener('click', () => finish('denied'));
-document.getElementById('restart').addEventListener('click', reset);
-document.getElementById('try-other').addEventListener('click', reset);
+document.getElementById('restart').addEventListener('click', () => {
+  reset();
+  emailInput.focus();
+});
+
+document.getElementById('try-other').addEventListener('click', () => {
+  reset();
+  picker.scrollIntoView({ block: 'center' });
+  picker.querySelector('button').focus();
+});
 
 setStep(1);
+setPhoneDock(false);
