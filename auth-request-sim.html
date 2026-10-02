@@ -27,13 +27,13 @@
   <p id="hero-sub">Read the request carefully.</p>
 </div>
 
-<p class="rule">
-  <b>The rule:</b> say yes only to a sign-in you started yourself, seconds ago.
-</p>
-
 <div class="steps">
   <span class="step-bars" id="step-bars" role="img" aria-label="No requests answered yet"></span>
 </div>
+
+<p class="rule">
+  <b>The rule:</b> say yes only to a sign-in you started yourself, seconds ago.
+</p>
 
 <div class="stage" id="stage">
   <section class="context">
@@ -104,10 +104,12 @@
             </div>
           </div>
 
-          <div id="pResult" class="pane hidden">
-            <p class="icon" id="rIcon" aria-hidden="true"></p>
-            <h3 id="rTitle" tabindex="-1"></h3>
-            <p id="rText"></p>
+          <div id="pResult" class="pane pane-top hidden">
+            <div class="notif result">
+              <p class="icon" id="rIcon" aria-hidden="true"></p>
+              <h3 id="rTitle" tabindex="-1"></h3>
+              <p id="rText"></p>
+            </div>
           </div>
         </div>
       </div>
@@ -115,11 +117,10 @@
   </section>
 </div>
 
-<div class="feedback" id="feedback" role="status" aria-live="polite">Read what you are doing, then wait for the request.</div>
-
-<p class="next-wrap">
+<div class="feedback" id="feedbackBlock">
+  <p class="feedback-text" id="feedback" role="status" aria-live="polite">Read what you are doing, then wait for the request.</p>
   <button type="button" class="btn blue hidden" id="nextBtn">Next request</button>
-</p>
+</div>
 
 <div class="summary hidden" id="summary">
   <h2 id="summaryTitle" tabindex="-1">Training complete</h2>
@@ -145,7 +146,8 @@
 
 </main>
 
-<p class="w3-center">
+<p class="page-foot">
+  <a class="w3-button w3-white w3-border" href="mfa-info.html">Read the briefing again</a>
   <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>
 </p>
 

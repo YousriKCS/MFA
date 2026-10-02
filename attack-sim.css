@@ -522,7 +522,7 @@
 
 :root {
   --laptop-scale: .8;
-  --phone-scale: min(calc(.8 * var(--text-scale)), calc((100vw - 56px) / 392), calc((100vh - 110px) / 808));
+  --phone-scale: min(calc(.8 * var(--text-scale)), 1.15);
 }
 
 body:has(.phone-dock) {
@@ -656,3 +656,21 @@ body:has(.phone-dock) {
 /*
 * End of code from https://www.w3schools.com/HOWTO/howto_css_devices.asp
 */
+
+@media (max-height: 1000px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), 1);
+  }
+}
+
+@media (max-height: 900px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), .95);
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), .85);
+  }
+}

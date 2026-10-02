@@ -118,7 +118,7 @@ function updateProgress() {
 }
 
 function setFeedback(text, cls = "") {
-	$("feedback").className = "feedback " + cls;
+	$("feedbackBlock").className = "feedback " + cls;
 	$("feedback").textContent = text;
 }
 
@@ -199,7 +199,7 @@ function next() {
 
 function showSummary() {
 	round++;
-	hideAll("stage", "feedback", "nextBtn");
+	hideAll("stage", "feedbackBlock", "nextBtn");
 
 	$("hero-sub").textContent = "Here's how you did.";
 
@@ -238,7 +238,7 @@ function restart() {
 	results.length = 0;
 	hide("summary");
 	show("stage");
-	show("feedback");
+	show("feedbackBlock");
 	loadScenario();
 }
 
