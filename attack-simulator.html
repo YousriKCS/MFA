@@ -3,29 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Attack Simulator</title>
     <link rel="stylesheet" href="w3.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="attack-sim.css">
+    <meta name="description" content="Play the attacker: see why a stolen password alone is not enough, and which second check actually stops you.">
+    <script src="accessibility.js"></script>
   </head>
-  <body class="w3-light-grey">
-    <div class="w3-bar w3-black w3-card">
+  <body>
+    <a class="skip-link" href="#main">Skip to the simulation</a>
+
+    <header class="w3-bar w3-black w3-card">
       <span class="w3-bar-item w3-wide"><b>ATTACK SIMULATOR</b></span>
 
-      <div class="w3-bar-item w3-right text-size">
-        <span>Text size</span>
-        <button type="button" class="w3-button w3-white" data-text-scale="1"
-                aria-pressed="true" aria-label="Normal text">A</button>
-        <button type="button" class="w3-button w3-white" data-text-scale="1.25"
-                aria-pressed="false" aria-label="Large text">A</button>
-        <button type="button" class="w3-button w3-white" data-text-scale="1.5"
-                aria-pressed="false" aria-label="Extra large text">A</button>
-      </div>
-    </div>
+      <div class="w3-bar-item w3-right text-size" data-text-size></div>
+    </header>
+
+    <main id="main">
 
     <div class="w3-content w3-container w3-padding-32" style="max-width:820px">
-      <header class="briefing">
-        <h2><b>You bought a stolen password</b></h2>
+      <div>
+        <h1><b>You bought a stolen password</b></h1>
         <p>A webshop was breached. This login was in the dump.</p>
 
         <dl class="leaked-creds w3-card w3-white w3-padding">
@@ -39,27 +37,29 @@
           </div>
         </dl>
 
-        <p>Word on the street is that he reuses it everywhere. Lets try getting into his bank.</p>
-      </header>
+        <p>Word on the street is that he reuses it everywhere. Let's try getting into his bank.</p>
+      </div>
 
-      <div class="mfa-picker w3-row w3-padding-16">
+      <h2 class="picker-label">Pick the second check you are up against</h2>
+
+      <div class="mfa-picker w3-row w3-padding-16" role="group" aria-label="Second check to attack">
         <div class="w3-quarter">
-          <button type="button" class="w3-button w3-block w3-black w3-border" data-mfa="text">
+          <button type="button" class="w3-button w3-block w3-black w3-border" data-mfa="text" aria-pressed="true">
             Code by text
           </button>
         </div>
         <div class="w3-quarter">
-          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="app">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="app" aria-pressed="false">
             Code in an app
           </button>
         </div>
         <div class="w3-quarter">
-          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="popup">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="popup" aria-pressed="false">
             Yes or No popup
           </button>
         </div>
         <div class="w3-quarter">
-          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="match">
+          <button type="button" class="w3-button w3-block w3-white w3-border" data-mfa="match" aria-pressed="false">
             Popup with a number
           </button>
         </div>
@@ -73,7 +73,7 @@
         <p class="steps">
           <span class="step-bar" data-step="1"></span>
           <span class="step-bar" data-step="2"></span>
-          <b class="step-label" id="step-label"></b>
+          <b class="step-label" id="step-label" role="status"></b>
         </p>
 
         <div class="device-frame--laptop">
@@ -91,7 +91,7 @@
                   <div class="bank-header">JU Bank</div>
 
                   <form class="login-card" id="login-form">
-                    <h1>Sign in to online banking</h1>
+                    <h2>Sign in to online banking</h2>
 
                     <label for="email">Email</label>
                     <input type="email" id="email" value="" autocomplete="off">
@@ -101,22 +101,22 @@
 
                     <button type="submit">Sign in</button>
                     <p class="fine-print">Forgot your password?</p>
-                    <p class="form-error" id="login-error" hidden></p>
+                    <p class="form-error" id="login-error" role="alert" hidden></p>
                   </form>
 
                   <form class="login-card" id="code-form" hidden>
-                    <h1>One more check</h1>
+                    <h2>One more check</h2>
                     <p class="form-note" id="code-note"></p>
 
                     <label for="code">Verification code</label>
                     <input type="text" id="code" inputmode="numeric" maxlength="6" autocomplete="off">
 
                     <button type="submit">Continue</button>
-                    <p class="form-error" id="code-error" hidden></p>
+                    <p class="form-error" id="code-error" role="alert" hidden></p>
                   </form>
 
                   <div class="login-card" id="wait-card" hidden>
-                    <h1>One more check</h1>
+                    <h2>One more check</h2>
                     <p class="form-note" id="wait-note"></p>
 
                     <p class="wait-status">Waiting for him to answer...</p>
@@ -135,13 +135,13 @@
                   </div>
 
                   <div class="login-card" id="result-card" hidden>
-                    <h1 id="result-title"></h1>
+                    <h2 id="result-title"></h2>
                     <p class="form-note" id="result-text"></p>
                   </div>
 
                   <div class="login-card" id="account-card" hidden>
                     <p class="account-owner">John Doe</p>
-                    <h1>Current account</h1>
+                    <h2>Current account</h2>
                     <p class="account-number">NL24 JUBA 0417 8829 61</p>
 
                     <p class="account-balance" id="account-balance">&euro;4,820.15</p>
@@ -160,7 +160,7 @@
         </div>
 
         <div class="outcome w3-card w3-white w3-padding-large" id="outcome" hidden>
-          <h3 id="outcome-title"></h3>
+          <h3 id="outcome-title" tabindex="-1"></h3>
           <p id="outcome-text"></p>
 
           <div class="remember w3-light-grey w3-padding w3-leftbar w3-border-black">
@@ -173,14 +173,20 @@
             <button type="button" class="w3-button w3-white w3-border" id="try-other">
               Try a different check
             </button>
+            <a class="w3-button w3-white w3-border" href="mfa-info.html">
+              Now practise saying no
+            </a>
           </p>
         </div>
 
         <p class="w3-center">
+          <a class="w3-button w3-white w3-border" href="attack-info.html">Read the briefing again</a>
           <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>
         </p>
       </div>
     </div>
+
+    </main>
 
     <div class="phone-dock" id="phone-dock">
       <button type="button" class="phone-toggle w3-button w3-black w3-block"
@@ -276,7 +282,6 @@
       </div>
     </div>
 
-    <script src="accessibility.js"></script>
     <script src="index.js"></script>
 
   </body>

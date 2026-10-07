@@ -3,28 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Authentication Request Simulator; before you start</title>
     <link rel="stylesheet" href="w3.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base.css">
+    <meta name="description" content="Before you start: how to tell a sign-in request you started from one an attacker sent.">
+    <script src="accessibility.js"></script>
   </head>
-  <body class="w3-light-grey">
-    <div class="w3-bar w3-black w3-card">
+  <body>
+    <a class="skip-link" href="#main">Skip to the briefing</a>
+
+    <header class="w3-bar w3-black w3-card">
       <span class="w3-bar-item w3-wide"><b>MFA SAFETY TRAINING</b></span>
 
-      <div class="w3-bar-item w3-right text-size">
-        <span>Text size</span>
-        <button type="button" class="w3-button w3-white" data-text-scale="1"
-                aria-pressed="true" aria-label="Normal text">A</button>
-        <button type="button" class="w3-button w3-white" data-text-scale="1.25"
-                aria-pressed="false" aria-label="Large text">A</button>
-        <button type="button" class="w3-button w3-white" data-text-scale="1.5"
-                aria-pressed="false" aria-label="Extra large text">A</button>
-      </div>
-    </div>
+      <div class="w3-bar-item w3-right text-size" data-text-size></div>
+    </header>
 
-    <div class="w3-content w3-container w3-padding-32" style="max-width:820px">
-      <h2><b>Authentication Request Simulator</b></h2>
+    <main id="main" class="w3-content w3-container w3-padding-32" style="max-width:820px">
+      <h1><b>Authentication Request Simulator</b></h1>
 
       <p>
         A request appears on your phone asking you to approve a login. Some of these come from
@@ -38,16 +33,18 @@
 
       <ol class="tutorial-steps">
         <li>
-          <b>Read the request.</b>
-          Look at the account, the place it is coming from, the device, and the time.
+          <b>Check what you are doing.</b>
+          The page tells you where you are, what device is in your hands, and whether you
+          have just started a sign-in.
         </li>
         <li>
-          <b>Ask whether you started it.</b>
-          If you are not signing in to that account right now, you did not start it.
+          <b>Read the request on your phone.</b>
+          The account, the place, the device, the browser, and the time.
         </li>
         <li>
-          <b>Approve or refuse.</b>
-          Only ever approve a request you started yourself.
+          <b>Compare the two.</b>
+          A familiar city proves nothing on its own. Say yes only when the request matches a
+          sign-in you started yourself.
         </li>
         <li>
           <b>Read what happened.</b>
@@ -66,8 +63,8 @@
         <a class="w3-button w3-black" href="auth-request-sim.html">Begin simulation</a>
         <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>
       </p>
-    </div>
 
-    <script src="accessibility.js"></script>
+    </main>
+
   </body>
 </html>

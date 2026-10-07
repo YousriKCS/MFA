@@ -3,96 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MFA Safety Training</title>
+<title>Authentication Request Simulator</title>
+<meta name="description" content="Practise telling a sign-in request you started from one an attacker sent to your phone.">
 <link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="auth-sim.css">
+<script src="accessibility.js"></script>
 </head>
 <body>
 
-<header>
-  <div class="brand">MFA Safety Training</div>
-  <div class="text-size">
-    <span>Text size</span>
-    <button type="button" class="w3-button" data-text-scale="1"
-            aria-pressed="true" aria-label="Normal text">A</button>
-    <button type="button" class="w3-button" data-text-scale="1.5"
-            aria-pressed="false" aria-label="Large text">A</button>
-    <button type="button" class="w3-button" data-text-scale="1.7"
-            aria-pressed="false" aria-label="Extra large text">A</button>
-  </div>
+<header class="w3-bar w3-black w3-card">
+  <span class="w3-bar-item w3-wide"><b>AUTHENTICATION REQUEST SIMULATOR</b></span>
+
+  <div class="w3-bar-item w3-right text-size" data-text-size></div>
 </header>
 
+<a class="skip-link" href="#main">Skip to the training</a>
+
+<main id="main">
+
 <div class="hero">
-  <h1>Learn how MFA protects you</h1>
+  <h1>Is this sign-in really yours?</h1>
   <p id="hero-sub">Read the request carefully.</p>
 </div>
 
-<div class="bar"><div id="fill"></div></div>
+<div class="steps">
+  <span class="step-bars" id="step-bars" role="img" aria-label="No requests answered yet"></span>
+</div>
+
+<p class="rule">
+  <b>The rule:</b> say yes only to a sign-in you started yourself, seconds ago.
+</p>
 
 <div class="stage" id="stage">
-  <!-- Attacker Phone -->
-  <div class="phone-wrap">
-    <div class="phone attacker">
-      <div class="screen">
-        <div id="p1Login" class="pane">
-          <h3>Sign in</h3>
-          <input id="username" readonly placeholder="Username">
-          <input id="password" readonly placeholder="Password">
-          <button class="btn red" id="loginBtn" onclick="startLogin()">Sign in</button>
+  <section class="context">
+    <h2 class="panel-title">What you are doing right now</h2>
+    <div class="context-card">
+      <p class="context-activity" id="cActivity">&mdash;</p>
+      <dl class="detail-list">
+        <div class="detail-row">
+          <dt>Place you are in</dt>
+          <dd id="cLoc">&mdash;</dd>
         </div>
-        <div id="p1Sending" class="pane hidden"><p>Sending request…</p></div>
-        <div id="p1Sent" class="pane hidden"><p>Waiting for approval…</p></div>
-        <div id="p1Approved" class="pane hidden"><h3 class="green">Access Granted</h3></div>
-        <div id="p1Denied" class="pane hidden"><h3 class="red">Access Denied</h3></div>
-      </div>
+        <div class="detail-row">
+          <dt>Device in your hands</dt>
+          <dd id="cDev">&mdash;</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Browser you use</dt>
+          <dd id="cBrowser">&mdash;</dd>
+        </div>
+        <div class="detail-row">
+          <dt>Time where you are</dt>
+          <dd id="cTime">&mdash;</dd>
+        </div>
+      </dl>
     </div>
-    <p class="label red">Attacker's Device</p>
-  </div>
+  </section>
 
-  <!-- Victim Phone -->
-  <div class="phone-wrap">
-    <div class="phone victim">
-      <div class="screen">
-        <div id="p2Idle" class="pane"><p>Locked</p></div>
-        <div id="p2Notif" class="pane hidden">
-          <div class="notif">
-            <div class="notif-head">Security Alert</div>
-            <h4>Approve sign-in?</h4>
-            <p><b>Account:</b> <span id="nUser">—</span></p>
-            <p><b>Location:</b> <span id="nLoc">—</span><span id="nTag"></span></p>
-            <p><b>IP:</b> <span id="nIP">—</span></p>
-            <p><b>Time:</b> <span id="nTime">—</span></p>
-            <p><b>Device:</b> <span id="nDev">—</span></p>
-            <p><b>Browser:</b> <span id="nBrowser">—</span></p>
-            <div class="row">
-              <button class="btn deny" onclick="answer(false)">Deny</button>
-              <button class="btn green" onclick="answer(true)">Approve</button>
+  <section class="phone-wrap">
+    <h2 class="panel-title">Your phone</h2>
+    <div class="phone-frame">
+      <div class="phone">
+        <div class="screen">
+          <div id="pIdle" class="pane">
+            <p class="icon" aria-hidden="true">&#128274;</p>
+            <p>Your phone is locked.</p>
+          </div>
+
+          <div id="pNotif" class="pane hidden">
+            <div class="notif">
+              <h3 class="notif-head" id="notifTitle" tabindex="-1">Approve this sign-in?</h3>
+              <p class="notif-warning hidden" id="nRepeat"></p>
+              <dl class="detail-list">
+                <div class="detail-row">
+                  <dt>Account</dt>
+                  <dd id="nUser">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Place</dt>
+                  <dd id="nLoc">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Device</dt>
+                  <dd id="nDev">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Browser</dt>
+                  <dd id="nBrowser">&mdash;</dd>
+                </div>
+                <div class="detail-row">
+                  <dt>Time</dt>
+                  <dd id="nTime">&mdash;</dd>
+                </div>
+              </dl>
+              <div class="row">
+                <button type="button" class="btn deny" id="denyBtn">No, not me</button>
+                <button type="button" class="btn green" id="approveBtn">Yes, it is me</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="pResult" class="pane pane-top hidden">
+            <div class="notif result">
+              <p class="icon" id="rIcon" aria-hidden="true"></p>
+              <h3 id="rTitle" tabindex="-1"></h3>
+              <p id="rText"></p>
             </div>
           </div>
         </div>
-        <div id="p2Approved" class="pane hidden"><h3 class="green">Approved</h3></div>
-        <div id="p2Denied" class="pane hidden"><h3 class="red">Denied</h3></div>
       </div>
     </div>
-    <p class="label green">Victim's Phone</p>
-  </div>
+  </section>
 </div>
 
-<div class="feedback" id="feedback">Tap <b>Sign in</b> on the attacker's phone to begin.</div>
+<div class="feedback" id="feedbackBlock">
+  <p class="feedback-text" id="feedback" role="status" aria-live="polite">Read what you are doing, then wait for the request.</p>
+  <button type="button" class="btn blue hidden" id="nextBtn">Next request</button>
+</div>
 
 <div class="summary hidden" id="summary">
-  <h2>Training complete</h2>
-  <div class="score" id="score">0 / 6</div>
+  <h2 id="summaryTitle" tabindex="-1">Training complete</h2>
+  <div class="score" id="score">0 / 7</div>
   <div class="verdict" id="verdict">—</div>
   <ul id="list"></ul>
-  <button class="btn blue" onclick="restart()">Restart training</button>
+
+  <div class="takeaway">
+    <h3>What to do in real life</h3>
+    <ul>
+      <li>Say yes only to a sign-in you started yourself, seconds ago.</li>
+      <li>Your own city and your own kind of device prove nothing. If you did not start it, it is not yours.</li>
+      <li>If requests keep arriving, say no every time and change your password straight away. Somebody already has the old one.</li>
+      <li>Nobody who telephones you needs your code. Not your bank, not the police, not support.</li>
+    </ul>
+  </div>
+
+  <p class="summary-actions">
+    <button type="button" class="btn blue" id="restartBtn">Practise again</button>
+    <a class="w3-button w3-white w3-border" href="attack-info.html">Try the Attack Simulator</a>
+  </p>
 </div>
 
-<p class="w3-center">
+</main>
+
+<p class="page-foot">
+  <a class="w3-button w3-white w3-border" href="mfa-info.html">Read the briefing again</a>
   <a class="w3-button w3-white w3-border" href="index.html">Back to homepage</a>
 </p>
 
-<script src="accessibility.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

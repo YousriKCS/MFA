@@ -1,54 +1,20 @@
-@font-face {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url(montserrat-latin.woff2) format("woff2");
-}
-
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
-}
-
 .laptop,
 .smartphone {
   box-sizing: content-box;
 }
 
-.sim-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 24px;
+.picker-label {
+  margin: 24px 0 0;
+  font-size: calc(20px * var(--text-scale));
 }
 
-.sim-card {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 280px;
+.mfa-picker button[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 3px var(--accent-dark);
 }
 
-.sim-card h3 {
-  margin-top: 0;
-}
-
-.sim-card .w3-button {
-  margin-top: auto;
-}
-
-.sim-icon {
-  margin: 0 0 16px;
-  font-size: 56px;
-  line-height: 1;
-  text-align: center;
-}
-
-.tutorial-steps {
-  padding-left: 20px;
-}
-
-.tutorial-steps li {
-  margin-bottom: 12px;
+.mfa-picker button[aria-pressed="true"]::before {
+  content: "\2713\00a0";
+  font-weight: 700;
 }
 
 .leaked-creds {
@@ -122,7 +88,8 @@ body, h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
 }
 
-.login-card h1 {
+.login-card h1,
+.login-card h2 {
   margin: 0 0 28px;
   font-family: inherit;
   font-size: 1.429em;
@@ -170,15 +137,6 @@ body, h1, h2, h3, h4, h5, h6 {
   font-size: .786em;
   text-align: center;
   color: #0a4d8c;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-:focus-visible {
-  outline: 3px solid #0a4d8c;
-  outline-offset: 2px;
 }
 
 .laptop :focus-visible {
@@ -536,7 +494,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .step-bar.on {
-  background-color: #000;
+  background-color: var(--accent);
 }
 
 .step-label {
@@ -564,56 +522,20 @@ body, h1, h2, h3, h4, h5, h6 {
 
 :root {
   --laptop-scale: .8;
-  --phone-scale: calc(.8 * min(var(--text-scale), 1.25));
-  --text-scale: 1;
+  --phone-scale: min(calc(.8 * var(--text-scale)), 1.15);
 }
 
-body {
-  font-size: calc(15px * var(--text-scale));
+body:has(.phone-dock) {
+  padding-bottom: 64px;
 }
 
-.w3-content h2 {
-  font-size: calc(30px * var(--text-scale));
-}
-
-.w3-content h3,
 .outcome h3 {
   font-size: calc(24px * var(--text-scale));
+  color: inherit;
 }
 
-.w3-content .w3-button,
 .outcome .w3-button {
   font-size: calc(15px * var(--text-scale));
-}
-
-.text-size {
-  padding: 0;
-}
-
-.text-size span {
-  margin-right: 8px;
-}
-
-.text-size button {
-  padding: 2px 10px;
-  font-weight: bold;
-}
-
-.text-size button[data-text-scale="1"] {
-  font-size: 13px;
-}
-
-.text-size button[data-text-scale="1.25"] {
-  font-size: 17px;
-}
-
-.text-size button[data-text-scale="1.5"] {
-  font-size: 21px;
-}
-
-.text-size button[aria-pressed="true"] {
-  outline: 3px solid white;
-  outline-offset: -3px;
 }
 
 .device-frame--laptop {
@@ -734,3 +656,21 @@ body {
 /*
 * End of code from https://www.w3schools.com/HOWTO/howto_css_devices.asp
 */
+
+@media (max-height: 1000px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), 1);
+  }
+}
+
+@media (max-height: 900px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), .95);
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --phone-scale: min(calc(.8 * var(--text-scale)), .85);
+  }
+}
